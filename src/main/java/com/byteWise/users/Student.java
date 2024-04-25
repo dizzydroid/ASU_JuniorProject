@@ -6,17 +6,16 @@ import src.main.java.com.byteWise.courses.Course;
 import java.util.ArrayList;
 public class Student extends User {
     private List<Course> enrolledCourses;
-
-    public Student(String id, String name, String email) {
-        super(id, name, email);
+    public Student(String id, String name) {
+        super(id, name);
         this.enrolledCourses = new ArrayList<>();
+        role = 0;
     }
 
     @Override
     public void displayDetails() {
         System.out.println("Student ID: " + getId());
         System.out.println("Name: " + getName());
-        System.out.println("Email: " + getEmail());
         System.out.println("Enrolled Courses:");
         for (Course course : enrolledCourses) {
             System.out.println(course.getCourseTitle());

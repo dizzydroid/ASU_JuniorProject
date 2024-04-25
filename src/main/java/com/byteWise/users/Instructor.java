@@ -7,16 +7,16 @@ import java.util.ArrayList;
 public class Instructor extends User {
     private List<Course> coursesTeaching;
 
-    public Instructor(String id, String name, String email) {
-        super(id, name, email);
+    public Instructor(String id, String name) {
+        super(id, name);
         this.coursesTeaching = new ArrayList<>();
+        role = 1;
     }
 
     @Override
     public void displayDetails() {
         System.out.println("Instructor ID: " + getId());
         System.out.println("Name: " + getName());
-        System.out.println("Email: " + getEmail());
         System.out.println("Courses Teaching:");
         for (Course course : coursesTeaching) {
             System.out.println(course.getCourseTitle());

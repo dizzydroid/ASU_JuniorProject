@@ -2,15 +2,15 @@ package src.main.java.com.byteWise.users;
 import src.main.java.com.byteWise.courses.Course;
 
 public class Admin extends User {
-    public Admin(String id, String name, String email) {
-        super(id, name, email);
+    public Admin(String id, String name) {
+        super(id, name);
+        role = 2;
     }
 
     @Override
     public void displayDetails() {
         System.out.println("Admin ID: " + getId());
         System.out.println("Name: " + getName());
-        System.out.println("Email: " + getEmail());
     }
 
     public void createUser(User user) throws UserAlreadyExistsException {

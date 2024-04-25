@@ -2,13 +2,13 @@ package src.main.java.com.byteWise.users;
 public abstract class User {
     private String id;
     private String name;
-    private String email;
-
+    private static int userCount = 0;
+    protected int role;
     // Constructor
-    public User(String id, String name, String email) {
+    public User(String id, String name) {
         this.id = id;
         this.name = name;
-        this.email = email;
+
     }
 
     // Abstract method to display user details
@@ -23,16 +23,9 @@ public abstract class User {
         return name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     // Setters
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
