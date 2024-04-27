@@ -1,5 +1,8 @@
 package src.main.java.com.byteWise.quiz;
+
+import java.util.Collections;
 import java.util.List;
+
 public class Question {
     private String questionText;
     private List<String> options;
@@ -9,6 +12,7 @@ public class Question {
         this.questionText = text;
         this.options = options;
         this.correctAnswer = correctAnswer;
+
     }
 
     public String getQuestionText() {
@@ -16,10 +20,12 @@ public class Question {
     }
 
     public List<String> getOptions() {
+        Collections.shuffle(options);
         return options;
     }
 
     public String getCorrectAnswer() {
         return correctAnswer;
     }
+
 }
