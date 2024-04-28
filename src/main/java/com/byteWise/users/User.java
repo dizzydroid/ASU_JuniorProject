@@ -1,11 +1,11 @@
 package src.main.java.com.byteWise.users;
 public abstract class User {
-    private String id;
+    private int id;
     private String name;
-    private static int userCount = 0;
-    protected int role;
+    public static int userCount = 0;
+    public int role; // 0 = Student, 1 = Instructor, 2 = Admin  
     // Constructor
-    public User(String id, String name) {
+    public User(int id, String name) {
         this.id = id;
         this.name = name;
 
@@ -15,7 +15,7 @@ public abstract class User {
     public abstract void displayDetails();
 
     // Getters
-    public String getId() {
+    public int getId() {
         return id;
     }
 

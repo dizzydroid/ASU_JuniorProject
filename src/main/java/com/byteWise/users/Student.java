@@ -2,11 +2,12 @@ package src.main.java.com.byteWise.users;
 import java.util.List;
 
 import src.main.java.com.byteWise.courses.Course;
+import src.main.java.com.byteWise.filesystem.Read_Write;
 
 import java.util.ArrayList;
 public class Student extends User {
     private List<Course> enrolledCourses;
-    public Student(String id, String name) {
+    public Student(int id, String name) {
         super(id, name);
         this.enrolledCourses = new ArrayList<>();
         role = 0;
@@ -18,13 +19,14 @@ public class Student extends User {
         System.out.println("Name: " + getName());
         System.out.println("Enrolled Courses:");
         for (Course course : enrolledCourses) {
-            System.out.println(course.getCourseTitle());
+            course.getCourseTitle();
         }
     }
 
     public void enrollInCourse(Course course) throws CourseNotFoundException {
         if (!enrolledCourses.contains(course)) {
             enrolledCourses.add(course);
+            Read_Write.writeToJson(this, this.getName());
             System.out.println("Enrolled in course: " + course.getCourseTitle());
         } else if (enrolledCourses.contains(course)){
             throw new CourseNotFoundException("Can't enroll in course. Course already enrolled.");
@@ -36,6 +38,7 @@ public class Student extends User {
     public void dropCourse(Course course) throws CourseNotFoundException{
         if (enrolledCourses.contains(course)) {
             enrolledCourses.remove(course);
+            Read_Write.writeToJson(this, this.getName());
             System.out.println("Dropped course: " + course.getCourseTitle());
         } else {
             throw new CourseNotFoundException("Can't drop course. Course not found.");

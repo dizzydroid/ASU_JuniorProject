@@ -1,8 +1,9 @@
 package src.main.java.com.byteWise.users;
 import src.main.java.com.byteWise.courses.Course;
+import src.main.java.com.byteWise.filesystem.Read_Write;
 
 public class Admin extends User {
-    public Admin(String id, String name) {
+    public Admin(int id, String name) {
         super(id, name);
         role = 2;
     }
@@ -13,9 +14,13 @@ public class Admin extends User {
         System.out.println("Name: " + getName());
     }
 
-    public void createUser(User user) throws UserAlreadyExistsException {
-        // Implementation for creating a user
-        System.out.println("Created user: " + user.getName());
+    public void createUser(String userName,String password,int role) throws UserAlreadyExistsException {
+        try {
+            Read_Write.Signup(userName, password, role);
+        } catch (Exception e) {
+            throw new UserAlreadyExistsException("User already exists");
+        }
+        System.out.println("Created user: " +userName);
     }
 
     public void deleteCourse(Course course) throws CourseNotFoundException {
@@ -23,9 +28,13 @@ public class Admin extends User {
         System.out.println("Deleted course: " + course.getCourseTitle());
     }
 
-    public void deleteUser(User user) throws UserNotFoundException {
-        // Implementation for deleting a user
-        System.out.println("Deleted user: " + user.getName());
+    public void deleteUser(String userName) throws UserNotFoundException {
+        try {Read_Write.deleteLineByUsername(userName);
+        }
+        catch (Exception e) {
+            throw new UserNotFoundException("User not found");
+        }
+        System.out.println("Deleted user: " + userName);
     }
 
     public static class CourseNotFoundException extends Exception {
