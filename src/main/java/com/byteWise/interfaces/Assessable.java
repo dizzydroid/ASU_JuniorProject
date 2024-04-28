@@ -1,4 +1,10 @@
 package src.main.java.com.byteWise.interfaces;
+
+
+import src.main.java.com.byteWise.quiz.Quiz;
+
 public interface Assessable {
-    void conductAssessment();
+
+    Quiz conductAssessment();
+    int quizzesCount();
 }
