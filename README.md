@@ -29,6 +29,7 @@ ByteWise is an innovative online course management system developed as a project
 - **Java**: Core programming language.
 - **JUnit**: Used for unit testing to ensure code quality.
 - **JavaFX**: GUI development.
+- **Figma**: Used for designing the project's wireframes.
 - **Git**: Version control system.
 
 ## Acknowledgements 🙏
