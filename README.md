@@ -22,7 +22,7 @@ ByteWise is an innovative online course management system developed as a project
  <br>&nbsp;&nbsp;&nbsp;&nbsp;*-> includes both the CLI and GUI packages.*
 - [**`src/test`**](src/test): Contains the unit tests conducted for the project.
 - [**`assets/`**](assets): Contains the project's assets, including images and diagrams.
-- [**`docs/`**](docs): Contains the project's documentation, including the SRS and SDD.
+- [**`docs/`**](docs): Contains the project's documentation.
 
 ## Technologies 💻
 
