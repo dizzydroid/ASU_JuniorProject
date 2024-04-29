@@ -27,7 +27,7 @@ public class WelcomeSceneController {
    @FXML
     private void handleSignUpButtonClick() throws IOException {
         // Load the sign-up scene FXML
-        Parent signUpRoot = FXMLLoader.load(getClass().getResource("./SignUpScene.fxml"));
+        Parent signUpRoot = FXMLLoader.load(getClass().getResource("./UserTypeSelection.fxml"));
         Scene signUpScene = new Scene(signUpRoot);
 
         // Get the current stage and switch scenes

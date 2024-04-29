@@ -19,7 +19,7 @@
             <Font size="21.0" />
          </font>
       </Text>
-      <Button fx:id="studentButton" layoutX="57.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleStudentSelection" styleClass="student-button">
+      <Button fx:id="studentButton" layoutX="57.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleStudentButtonAction" styleClass="student-button">
          <graphic>
             <ImageView fx:id="studentIMG" fitHeight="223.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true" styleClass="student-button">
                <image>
@@ -28,7 +28,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="instructorButton" layoutX="337.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleInstructorSelection" styleClass="student-button">
+      <Button fx:id="instructorButton" layoutX="337.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleInstructorButtonAction" styleClass="student-button">
          <graphic>
             <ImageView fx:id="instructorIMG" fitHeight="223.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true">
                <image>
