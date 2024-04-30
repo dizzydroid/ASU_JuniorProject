@@ -79,7 +79,7 @@ public final class Read_Write {
 
     public static int Login(String userName,String password)throws UserNotFoundException{
         try (Scanner scanner = new Scanner(new File(FILEPATH +USERS_CSV_FILEName))) {
-            if(scanner.hasNextLine()){
+            if(scanner.hasNextLine()){              //FIXME: first CSV line is not detected as a valid user!!
                 scanner.nextLine(); // Skip the header
             }
             while (scanner.hasNextLine()) {
