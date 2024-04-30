@@ -42,5 +42,10 @@
          </font>
       </Text>
       <Button fx:id="signUpButton" layoutX="226.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="70.0" prefWidth="146.0" styleClass="sign-up-button" stylesheets="@styles.css" text="SIGN UP" />
+      <Text fx:id="feedbackText" fill="#34ff52" layoutX="155.0" layoutY="35.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

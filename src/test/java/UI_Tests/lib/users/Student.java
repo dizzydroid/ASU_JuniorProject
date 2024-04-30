@@ -25,19 +25,18 @@ public class Student extends User {
     public void enrollInCourse(Course course) throws CourseNotFoundException {
         if (!enrolledCourses.contains(course)) {
             enrolledCourses.add(course);
-            Read_Write.writeToJson(this, this.getName());
+            Read_Write.writeToJson(this);  // Use adjusted writeToJson method.
             System.out.println("Enrolled in course: " + course.getCourseTitle());
-        } else if (enrolledCourses.contains(course)){
-            throw new CourseNotFoundException("Can't enroll in course. Course already enrolled.");
         } else {
-            throw new CourseNotFoundException("Can't enroll in course. Course not found.");
+            throw new CourseNotFoundException("Can't enroll in course. Course already enrolled.");
         }
     }
+    
 
     public void dropCourse(Course course) throws CourseNotFoundException{
         if (enrolledCourses.contains(course)) {
             enrolledCourses.remove(course);
-            Read_Write.writeToJson(this, this.getName());
+            Read_Write.writeToJson(this);
             System.out.println("Dropped course: " + course.getCourseTitle());
         } else {
             throw new CourseNotFoundException("Can't drop course. Course not found.");

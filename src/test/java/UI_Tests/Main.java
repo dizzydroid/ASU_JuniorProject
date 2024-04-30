@@ -15,7 +15,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("welcome_scene.fxml"));
         Parent root = loader.load();
-        WelcomeSceneController controller = loader.getController();
+       // WelcomeSceneController controller = loader.getController();
         Scene scene = new Scene(root, Color.gray(0.9)); // add the root node to the scene and pass a paint color
         String css = this.getClass().getResource("styles.css").toExternalForm();
 

@@ -23,31 +23,59 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import lib.google.*;
 import lib.course.*;
 import lib.users.*;
-import lib.quiz.*;
 
 
 
 public final class Read_Write {
 
-    private static final String FILEPATH = "ASU_JuniorProject\\src\\main\\java\\com\\byteWise\\filesystem";
+    private static final String FILEPATH = "lib\\filesystem\\";
     private static final String USERS_CSV_FILEName = "Users.csv";
-    public static void Signup(String username ,String password, int role) throws UserAlreadyExistsException{
-        //should check if the user already exists and throw an exception if they do
-        try{Login(username, password);
-            throw new UserAlreadyExistsException("User already exists");}
-        catch(UserNotFoundException e){ 
-            //if the user is not found, write the user to the file
-            try(BufferedWriter writer = new BufferedWriter(new FileWriter(FILEPATH + USERS_CSV_FILEName))) {
-                writer.write(username + "," + password + "," + role + "\n");
-            } catch (IOException ee) {
-                System.out.println("Error appending data to CSV file: " + ee.getMessage());
-            }    
+    private static final String ID_FILE = FILEPATH + "last_id.txt"; // File to keep the last used ID
+
+
+    public static synchronized int generateId() {
+        int lastId = 0;
+        File file = new File(ID_FILE);
+        if (file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String lastIdStr = reader.readLine();
+                if (lastIdStr != null && !lastIdStr.isEmpty()) {
+                    lastId = Integer.parseInt(lastIdStr.trim());
+                }
+            } catch (IOException | NumberFormatException e) {
+                e.printStackTrace();
+                return -1; // Handle this case in your application
+            }
         }
 
+        // Increment the last ID and update the file
+        lastId++;
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.write(Integer.toString(lastId));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1; // Handle this case in your application
+        }
+        
+        return lastId;
     }
+
+    public static void Signup(String username, String password, int role) throws UserAlreadyExistsException {
+        try {
+          Login(username, password); // Unnecessary for signup, remove this line
+          throw new UserAlreadyExistsException("User already exists");
+        } catch (UserNotFoundException e) {
+          // User not found, append data to file
+          try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILEPATH + USERS_CSV_FILEName, true))) { // XXX: ADDED append PARAMETER 
+            writer.write(username + "," + password + "," + role + "\n");
+          } catch (IOException ee) {
+            System.out.println("Error appending data to CSV file: " + ee.getMessage());
+          }
+        }
+      }
+      
 
     public static int Login(String userName,String password)throws UserNotFoundException{
         try (Scanner scanner = new Scanner(new File(FILEPATH +USERS_CSV_FILEName))) {
@@ -70,7 +98,9 @@ public final class Read_Write {
         }
     }
 
-    public static void initializeJSON(String studnetUsername) {
+
+
+    public static void initializeJSON(String studnetUsername) { //FIXME: studentUsername (typo)
         Student student = new Student(User.userCount+1, studnetUsername);
         try (FileWriter writer = new FileWriter(FILEPATH+studnetUsername+".json")) {
             writer.write(new Gson().toJson(student));
@@ -79,17 +109,22 @@ public final class Read_Write {
             e.printStackTrace();
         }      
     }
-    public static void writeToJson(User user, String userName) {
+    public static void writeToJson(User user) {
         Gson gson = new GsonBuilder()
             .registerTypeAdapter(Course.class, new CourseAdapter())
+            .setPrettyPrinting() // This will make the JSON output more readable.
             .create();
-
-        try (Writer writer = new FileWriter(FILEPATH+ userName+".json")) {
+    
+        String filename = FILEPATH + user.getName() + ".json";
+        try (Writer writer = new FileWriter(filename)) {
             gson.toJson(user, writer);
+            System.out.println("JSON written to " + filename + " successfully.");
         } catch (IOException e) {
+            System.out.println("Failed to write JSON: " + e.getMessage());
             e.printStackTrace();
         }
     }
+    
  
     public static User readFromJson(String userName) {
         Gson gson = new GsonBuilder()

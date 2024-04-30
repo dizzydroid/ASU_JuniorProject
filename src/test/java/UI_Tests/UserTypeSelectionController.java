@@ -11,6 +11,7 @@ public class UserTypeSelectionController {
     
     @FXML
     private Button studentButton;
+    private Button instructorButton;
 
     @FXML
     private void handleStudentButtonAction() throws IOException {
@@ -29,8 +30,8 @@ public class UserTypeSelectionController {
         SignUpDetailsController signUpDetailsController = loader.getController();
         signUpDetailsController.setUserType(userType);
 
-        Stage stage = new Stage();
+        Stage stage = (Stage) studentButton.getScene().getWindow();
         stage.setScene(new Scene(root));
-        stage.show();
+        //stage.show();
     }
 }
