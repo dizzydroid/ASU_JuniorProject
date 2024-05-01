@@ -30,10 +30,17 @@ import src.main.java.com.byteWise.users.Admin.UserNotFoundException;
 
 public final class Read_Write {
 
-    private static final String FILEPATH = "ASU_JuniorProject\\src\\main\\java\\com\\byteWise\\filesystem\\";
-    private static final String USERS_CSV_FILEName = "Users.csv";
+    private static String FILEPATH = "G:\\ASU_JuniorProject\\src\\main\\java\\com\\byteWise\\filesystem\\";
+    private static final String USERS_CSV_FILEName = FILEPATH + "\\src\\main\\java\\com\\byteWise\\filesystem\\Users.csv";
     private static final String ID_FILE = FILEPATH + "last_id.txt"; // File to keep the last used ID
 
+       
+    public static String getFILEPATH() {
+        return FILEPATH;
+    }
+    public static void setFilePath(){
+        FILEPATH = System.getProperty("user.dir");
+    }
 
     public static synchronized int generateId() {
         int lastId = 0;
@@ -68,7 +75,7 @@ public final class Read_Write {
             throw new UserAlreadyExistsException("User already exists");}
         catch(UserNotFoundException e){ 
             //if the user is not found, write the user to the file
-            try(BufferedWriter writer = new BufferedWriter(new FileWriter(FILEPATH + USERS_CSV_FILEName))) {
+            try(BufferedWriter writer = new BufferedWriter(new FileWriter(FILEPATH + USERS_CSV_FILEName, true))) {
                 writer.write(username + "," + password + "," + role + "\n");
             } catch (IOException ee) {
                 System.out.println("Error appending data to CSV file: " + ee.getMessage());

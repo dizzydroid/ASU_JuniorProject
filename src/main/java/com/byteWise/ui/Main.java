@@ -6,9 +6,11 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import src.main.java.com.byteWise.filesystem.Read_Write;
 
 public class Main extends Application {
     public static void main(String[] args) {
+        Read_Write.setFilePath();
         launch(args);
     }
 
@@ -24,8 +26,8 @@ public class Main extends Application {
 
 
         stage.setTitle("Demo");
-
-        Image icon = new Image("icon.png"); //-> FIXME: this causes problems
+        System.out.println(Read_Write.getFILEPATH());
+        Image icon = new Image(Read_Write.getFILEPATH()+"\\src\\main\\java\\com\\byteWise\\ui\\icon.png"); //-> FIXME: this causes problems
         stage.getIcons().add(icon);
 
         stage.setScene(scene);
