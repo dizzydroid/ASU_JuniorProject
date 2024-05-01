@@ -1,4 +1,4 @@
-package src.main.java.com.byteWise.ui.Controllers;
+package src.main.java.com.byteWise.ui;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
@@ -38,7 +38,7 @@ public class SignInController {
         Parent root;
         switch (userRole) {
             case 0: // Student
-                loader.setLocation(getClass().getResource("StudentDashboard.fxml"));
+                loader.setLocation(getClass().getResource("src/main/java/com/byteWise/ui/StudentDashboard.fxml"));
                 root = loader.load();
                 // Set the username on the student dashboard
                 StudentDashboardController studentController = loader.getController();
@@ -46,7 +46,7 @@ public class SignInController {
                 feedbackText.setText("Login successful. Welcome, Student!");
                 break;
             case 1: // Instructor
-                loader.setLocation(getClass().getResource("InstructorDashboard.fxml"));
+                loader.setLocation(getClass().getResource("src/main/java/com/byteWise/ui/InstructorDashboard.fxml"));
                 root = loader.load();
                 // Set the username on the instructor dashboard
                 InstructorDashboardController instructorController = loader.getController();
@@ -54,7 +54,7 @@ public class SignInController {
                 feedbackText.setText("Login successful. Welcome, Instructor!");
                 break;
             case 2: // Admin
-                loader.setLocation(getClass().getResource("AdminDashboard.fxml"));
+                loader.setLocation(getClass().getResource("src/main/java/com/byteWise/ui/AdminDashboard.fxml"));
                 root = loader.load();
                 // Set the username on the admin dashboard
                 AdminDashboardController adminController = loader.getController();

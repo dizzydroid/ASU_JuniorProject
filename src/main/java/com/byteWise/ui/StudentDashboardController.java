@@ -1,40 +1,49 @@
-package src.main.java.com.byteWise.ui.Controllers;
-import java.io.IOException;
-import java.util.Optional;
-
+package src.main.java.com.byteWise.ui;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.fxml.FXMLLoader;
+import java.io.IOException;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.ButtonBar.ButtonData;
+import java.util.Optional;
 
-public class AdminDashboardController {
+public class StudentDashboardController {
 
     @FXML
     private Text userName;
 
     @FXML
-    private Button manageUsersBtn, manageCoursesBtn, profileBtn;
+    private Button myLearningBtn, discoverBtn, giveUpBtn, profileBtn;
 
+    // Method to set the user's name on the dashboard
     public void setUserName(String name) {
         userName.setText(name);
     }
 
+    // Method for handling the My Learning button action
     @FXML
-    private void handleManageUsersAction() {
-        // Code to switch to the Manage Users scene
+    private void handleMyLearningAction() throws IOException {
+        changeScene("MyLearningScene.fxml");
     }
 
+    // Method for handling the Discover button action
     @FXML
-    private void handleManageCoursesAction() {
-        // Code to switch to the Manage Courses scene
+    private void handleDiscoverAction() throws IOException {
+        changeScene("DiscoverScene.fxml");
     }
 
+    // Method for handling the Give Up button action
+    @FXML
+    private void handleGiveUpAction() throws IOException {
+        changeScene("GiveUpScene.fxml");
+    }
+
+    // Method for handling the Profile button action
     @FXML
     private void handleProfileAction() {
         Dialog<String> dialog = new Dialog<>();

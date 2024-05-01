@@ -14,18 +14,18 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("welcome_scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("./welcome_scene.fxml"));
         Parent root = loader.load();
        // WelcomeSceneController controller = loader.getController();
         Scene scene = new Scene(root, Color.gray(0.9)); // add the root node to the scene and pass a paint color
-        String css = this.getClass().getResource("styles.css").toExternalForm();
+        String css = this.getClass().getResource("./styles.css").toExternalForm();
 
         scene.getStylesheets().add(css);
 
 
         stage.setTitle("Demo");
 
-        Image icon = new Image("icon.png");
+        Image icon = new Image("icon.png"); //-> FIXME: this causes problems
         stage.getIcons().add(icon);
 
         stage.setScene(scene);

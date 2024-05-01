@@ -1,50 +1,46 @@
-package src.main.java.com.byteWise.ui.Controllers;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.fxml.FXMLLoader;
+package src.main.java.com.byteWise.ui;
 import java.io.IOException;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.ButtonBar.ButtonData;
 import java.util.Optional;
 
-public class StudentDashboardController {
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+public class InstructorDashboardController {
 
     @FXML
     private Text userName;
 
     @FXML
-    private Button myLearningBtn, discoverBtn, giveUpBtn, profileBtn;
+    private Button addCoursesBtn, removeCoursesBtn, myTeachingBtn, profileBtn;
 
-    // Method to set the user's name on the dashboard
     public void setUserName(String name) {
         userName.setText(name);
     }
 
-    // Method for handling the My Learning button action
     @FXML
-    private void handleMyLearningAction() throws IOException {
-        changeScene("MyLearningScene.fxml");
+    private void handleAddCoursesAction() {
+        // Code to switch to the Add Courses scene
     }
 
-    // Method for handling the Discover button action
     @FXML
-    private void handleDiscoverAction() throws IOException {
-        changeScene("DiscoverScene.fxml");
+    private void handleRemoveCoursesAction() {
+        // Code to switch to the Remove Courses scene
     }
 
-    // Method for handling the Give Up button action
     @FXML
-    private void handleGiveUpAction() throws IOException {
-        changeScene("GiveUpScene.fxml");
+    private void handleMyTeachingAction() {
+        // Code to switch to the My Teaching scene
     }
 
-    // Method for handling the Profile button action
-    @FXML
+     @FXML
     private void handleProfileAction() {
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Profile Options");
@@ -102,7 +98,7 @@ public class StudentDashboardController {
         infoAlert.showAndWait();
     }
 
-    private void changeScene(String fxmlFile) throws IOException {
+     private void changeScene(String fxmlFile) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Stage stage = (Stage) userName.getScene().getWindow();
         Scene scene = new Scene(loader.load());

@@ -1,4 +1,4 @@
-package src.main.java.com.byteWise.ui.Controllers;
+package src.main.java.com.byteWise.ui;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
@@ -39,7 +39,7 @@ public class WelcomeSceneController {
     @FXML
     private void handleSignInButtonClick() throws IOException {
         // Load the sign-in scene FXML
-        Parent signInRoot = FXMLLoader.load(getClass().getResource("SignInScene.fxml"));
+        Parent signInRoot = FXMLLoader.load(getClass().getResource("src/main/java/com/byteWise/ui/SignInScene.fxml"));
         Scene signInScene = new Scene(signInRoot);
 
         // Get the current stage and switch scenes

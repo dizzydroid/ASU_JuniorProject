@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.Controllers.UserTypeSelectionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.UserTypeSelectionController">
    <children>
       <Text fill="#09ac50" layoutX="155.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Aboard!">
          <font>
@@ -23,7 +23,7 @@
          <graphic>
             <ImageView fx:id="studentIMG" fitHeight="223.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true" styleClass="student-button">
                <image>
-                  <Image url="@../../../../assets/GUI%20assets/StudentIcon.png" />
+                  <Image url="@../../../../../../assets/GUI%20assets/StudentIcon.png" />
                </image>
             </ImageView>
          </graphic>
@@ -32,7 +32,7 @@
          <graphic>
             <ImageView fx:id="instructorIMG" fitHeight="223.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../assets/GUI%20assets/InstructorIcon.png" />
+                  <Image url="@../../../../../../assets/GUI%20assets/InstructorIcon.png" />
                </image>
             </ImageView>
          </graphic>

@@ -1,4 +1,4 @@
-package src.main.java.com.byteWise.ui.Controllers;
+package src.main.java.com.byteWise.ui;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -13,34 +13,29 @@ import javafx.scene.control.Dialog;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class InstructorDashboardController {
+public class AdminDashboardController {
 
     @FXML
     private Text userName;
 
     @FXML
-    private Button addCoursesBtn, removeCoursesBtn, myTeachingBtn, profileBtn;
+    private Button manageUsersBtn, manageCoursesBtn, profileBtn;
 
     public void setUserName(String name) {
         userName.setText(name);
     }
 
     @FXML
-    private void handleAddCoursesAction() {
-        // Code to switch to the Add Courses scene
+    private void handleManageUsersAction() {
+        // Code to switch to the Manage Users scene
     }
 
     @FXML
-    private void handleRemoveCoursesAction() {
-        // Code to switch to the Remove Courses scene
+    private void handleManageCoursesAction() {
+        // Code to switch to the Manage Courses scene
     }
 
     @FXML
-    private void handleMyTeachingAction() {
-        // Code to switch to the My Teaching scene
-    }
-
-     @FXML
     private void handleProfileAction() {
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Profile Options");
@@ -60,7 +55,7 @@ public class InstructorDashboardController {
                 return null;  // Don't close the dialog on this option
             } else if (dialogButton == signOutButtonType) {
                 try {
-                    changeScene("welcome_scene.fxml");
+                    changeScene("./welcome_scene.fxml");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -98,7 +93,7 @@ public class InstructorDashboardController {
         infoAlert.showAndWait();
     }
 
-     private void changeScene(String fxmlFile) throws IOException {
+    private void changeScene(String fxmlFile) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Stage stage = (Stage) userName.getScene().getWindow();
         Scene scene = new Scene(loader.load());

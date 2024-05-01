@@ -30,7 +30,7 @@ import src.main.java.com.byteWise.users.Admin.UserNotFoundException;
 
 public final class Read_Write {
 
-    private static final String FILEPATH = "ASU_JuniorProject\\src\\main\\java\\com\\byteWise\\filesystem";
+    private static final String FILEPATH = "ASU_JuniorProject\\src\\main\\java\\com\\byteWise\\filesystem\\";
     private static final String USERS_CSV_FILEName = "Users.csv";
     private static final String ID_FILE = FILEPATH + "last_id.txt"; // File to keep the last used ID
 

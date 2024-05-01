@@ -1,4 +1,4 @@
-package src.main.java.com.byteWise.ui.Controllers;
+package src.main.java.com.byteWise.ui;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
@@ -25,7 +25,7 @@ public class UserTypeSelectionController {
     }
 
     private void loadSignUpDetails(String userType) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUpDetails.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("./SignUpDetails.fxml"));
         Parent root = loader.load();
 
         SignUpDetailsController signUpDetailsController = loader.getController();

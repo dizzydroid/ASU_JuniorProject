@@ -1,4 +1,4 @@
-package src.main.java.com.byteWise.ui.Controllers;
+package src.main.java.com.byteWise.ui;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
@@ -78,7 +78,7 @@ public class SignUpDetailsController {
     
 
     private void redirectToSignIn() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SignInScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("./SignInScene.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) usernameField.getScene().getWindow();
