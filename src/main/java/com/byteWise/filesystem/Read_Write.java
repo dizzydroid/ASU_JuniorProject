@@ -12,7 +12,15 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonSerializer;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonDeserializationContext;
 import src.main.java.com.byteWise.courses.Course;
 import src.main.java.com.byteWise.users.Instructor;
 import src.main.java.com.byteWise.users.Student;
@@ -24,6 +32,36 @@ public final class Read_Write {
 
     private static final String FILEPATH = "ASU_JuniorProject\\src\\main\\java\\com\\byteWise\\filesystem";
     private static final String USERS_CSV_FILEName = "Users.csv";
+    private static final String ID_FILE = FILEPATH + "last_id.txt"; // File to keep the last used ID
+
+
+    public static synchronized int generateId() {
+        int lastId = 0;
+        File file = new File(ID_FILE);
+        if (file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String lastIdStr = reader.readLine();
+                if (lastIdStr != null && !lastIdStr.isEmpty()) {
+                    lastId = Integer.parseInt(lastIdStr.trim());
+                }
+            } catch (IOException | NumberFormatException e) {
+                e.printStackTrace();
+                return -1; // Handle this case in your application
+            }
+        }
+
+        // Increment the last ID and update the file
+        lastId++;
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.write(Integer.toString(lastId));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1; // Handle this case in your application
+        }
+        
+        return lastId;
+    }
+
     public static void Signup(String username ,String password, int role) throws UserAlreadyExistsException{
         //should check if the user already exists and throw an exception if they do
         try{Login(username, password);
@@ -148,6 +186,23 @@ public final class Read_Write {
                 writer.write(line);
                 writer.newLine();
             }
+        }
+    }
+    public static class CourseNotFoundException extends Exception {
+        public CourseNotFoundException(String message) {
+            super(message);
+        }
+    }
+
+    public static class UserNotFoundException extends Exception {
+        public UserNotFoundException(String message) {
+            super(message);
+        }
+    }
+
+    public static class UserAlreadyExistsException extends Exception {
+        public UserAlreadyExistsException(String message) {
+            super(message);
         }
     }
 }

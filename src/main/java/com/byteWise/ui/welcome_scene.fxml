@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.Controllers.WelcomeSceneController">
+   <children>
+      <Text fill="#09ac50" layoutX="332.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ByteWise">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
+      <Text layoutX="123.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
+      <Text fill="#797979" layoutX="193.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BYTE INTO KNOWLEDGE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="signUpButton" layoutX="222.0" layoutY="166.0" mnemonicParsing="false" onAction="#handleSignUpButtonClick" prefHeight="70.0" prefWidth="146.0" styleClass="sign-up-button" stylesheets="@styles.css" text="SIGN UP" />
+      <Button fx:id="signInButton" layoutX="222.0" layoutY="283.0" mnemonicParsing="false" onAction="#handleSignInButtonClick" prefHeight="70.0" prefWidth="146.0" styleClass="signbutton" stylesheets="@styles.css" text="SIGN IN" />
+      <Text fill="#464646" layoutX="166.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REMEMBER YOUR PASSWORD? SHOCKING.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

@@ -196,7 +196,7 @@ public final class Read_Write {
         }
     }
 
-        public static class CourseNotFoundException extends Exception {
+    public static class CourseNotFoundException extends Exception {
         public CourseNotFoundException(String message) {
             super(message);
         }

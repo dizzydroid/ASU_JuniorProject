@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "src/main/java/com/byteWise/filesystem/gson-2.10.1.jar"
+    ]
+}
