@@ -108,15 +108,21 @@ public final class Read_Write {
         }
     }
 
-    public static void initializeJSON(String studentUsername) {
-        Student student = new Student(User.userCount+1, studentUsername);
-        try (FileWriter writer = new FileWriter(SYSTEM_FILEPATH + studentUsername + ".json")) {
-            writer.write(new Gson().toJson(student));
+    public static void initializeJSON(String userName, int role) {
+        User user = null;
+        if (role == 0) {
+            user = new Student(generateId(), userName);
+        } else {
+            user = new Instructor(generateId(), userName);
+        }
+        try (FileWriter writer = new FileWriter(SYSTEM_FILEPATH + userName + ".json")) {
+            writer.write(new Gson().toJson(user));
             System.out.println("User JSON written to file successfully.");
         } catch (IOException e) {
             e.printStackTrace();
         }      
     }
+    
     public static void writeToJson(User user, String userName) {
         Gson gson = new GsonBuilder()
             .registerTypeAdapter(Course.class, new CourseAdapter())

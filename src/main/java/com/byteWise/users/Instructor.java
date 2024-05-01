@@ -6,11 +6,11 @@ import src.main.java.com.byteWise.filesystem.Read_Write;
 
 import java.util.ArrayList;
 public class Instructor extends User {
-    private List<Course> coursesTeaching;
+    private List<Course> courses;
 
     public Instructor(int id, String name) {
         super(id, name);
-        this.coursesTeaching = new ArrayList<>();
+        this.courses = new ArrayList<>();
         role = 1;
     }
 
@@ -19,17 +19,17 @@ public class Instructor extends User {
         System.out.println("Instructor ID: " + getId());
         System.out.println("Name: " + getName());
         System.out.println("Courses Teaching:");
-        for (Course course : coursesTeaching) {
+        for (Course course : courses) {
             System.out.println(course.getCourseTitle());
         }
     }
 
     public void addCourse(Course course) throws CourseNotFoundException {
-        if (!coursesTeaching.contains(course)) {
-            coursesTeaching.add(course);
+        if (!courses.contains(course)) {
+            courses.add(course);
             Read_Write.writeToJson(this, this.getName());
             System.out.println("Added course to teach: " + course.getCourseTitle());
-        } else if (coursesTeaching.contains(course)){
+        } else if (courses.contains(course)){
             throw new CourseNotFoundException("Can't add course. Course already teaching.");
         } else {
             throw new CourseNotFoundException("Can't add course. Course not found.");
@@ -37,8 +37,8 @@ public class Instructor extends User {
     }
 
     public void removeCourse(Course course) {
-        if (coursesTeaching.contains(course)) {
-            coursesTeaching.remove(course);
+        if (courses.contains(course)) {
+            courses.remove(course);
             Read_Write.writeToJson(this, this.getName());
             System.out.println("Removed course from teaching: " + course.getCourseTitle());
         } else {

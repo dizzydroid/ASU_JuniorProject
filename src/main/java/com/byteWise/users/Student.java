@@ -6,10 +6,10 @@ import src.main.java.com.byteWise.filesystem.Read_Write;
 
 import java.util.ArrayList;
 public class Student extends User {
-    private List<Course> enrolledCourses;
+    private List<Course> courses;
     public Student(int id, String name) {
         super(id, name);
-        this.enrolledCourses = new ArrayList<>();
+        this.courses = new ArrayList<>();
         role = 0;
     }
 
@@ -18,17 +18,17 @@ public class Student extends User {
         System.out.println("Student ID: " + getId());
         System.out.println("Name: " + getName());
         System.out.println("Enrolled Courses:");
-        for (Course course : enrolledCourses) {
+        for (Course course : courses) {
             course.getCourseTitle();
         }
     }
 
     public void enrollInCourse(Course course) throws CourseNotFoundException {
-        if (!enrolledCourses.contains(course)) {
-            enrolledCourses.add(course);
+        if (!courses.contains(course)) {
+            courses.add(course);
             Read_Write.writeToJson(this, this.getName());
             System.out.println("Enrolled in course: " + course.getCourseTitle());
-        } else if (enrolledCourses.contains(course)){
+        } else if (courses.contains(course)){
             throw new CourseNotFoundException("Can't enroll in course. Course already enrolled.");
         } else {
             throw new CourseNotFoundException("Can't enroll in course. Course not found.");
@@ -36,8 +36,8 @@ public class Student extends User {
     }
 
     public void dropCourse(Course course) throws CourseNotFoundException{
-        if (enrolledCourses.contains(course)) {
-            enrolledCourses.remove(course);
+        if (courses.contains(course)) {
+            courses.remove(course);
             Read_Write.writeToJson(this, this.getName());
             System.out.println("Dropped course: " + course.getCourseTitle());
         } else {

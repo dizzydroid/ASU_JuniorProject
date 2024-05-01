@@ -26,7 +26,7 @@ public class Main extends Application {
 
 
         stage.setTitle("Demo");
-        Image icon = new Image(Read_Write.getFILEPATH()+"\\src\\main\\java\\com\\byteWise\\ui\\icon.png");
+        Image icon = new Image("file:///"+Read_Write.getFILEPATH()+"\\src\\main\\java\\com\\byteWise\\ui\\icon.png");
         stage.getIcons().add(icon);
 
         stage.setScene(scene);
