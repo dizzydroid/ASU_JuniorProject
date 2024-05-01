@@ -30,16 +30,19 @@ import src.main.java.com.byteWise.users.Admin.UserNotFoundException;
 
 public final class Read_Write {
 
-    private static String FILEPATH = "G:\\ASU_JuniorProject\\src\\main\\java\\com\\byteWise\\filesystem\\";
-    private static final String USERS_CSV_FILEName = FILEPATH + "\\src\\main\\java\\com\\byteWise\\filesystem\\Users.csv";
-    private static final String ID_FILE = FILEPATH + "last_id.txt"; // File to keep the last used ID
+    private static String FILEPATH; // sets the file to main working directory (ASU_JuniorProject)
+    private static String SYSTEM_FILEPATH = "\\src\\main\\java\\com\\byteWise\\filesystem\\";
+    private static String USERS_CSV_FILEPATH;
+    private static String ID_FILE;
 
        
     public static String getFILEPATH() {
         return FILEPATH;
     }
     public static void setFilePath(){
-        FILEPATH = System.getProperty("user.dir");
+        FILEPATH = System.getProperty("user.dir"); // set the file path to the current directory
+        USERS_CSV_FILEPATH = FILEPATH + SYSTEM_FILEPATH + "Users.csv";
+        ID_FILE = FILEPATH + SYSTEM_FILEPATH + "last_id.txt";
     }
 
     public static synchronized int generateId() {
@@ -75,7 +78,7 @@ public final class Read_Write {
             throw new UserAlreadyExistsException("User already exists");}
         catch(UserNotFoundException e){ 
             //if the user is not found, write the user to the file
-            try(BufferedWriter writer = new BufferedWriter(new FileWriter(FILEPATH + USERS_CSV_FILEName, true))) {
+            try(BufferedWriter writer = new BufferedWriter(new FileWriter(USERS_CSV_FILEPATH, true))) {
                 writer.write(username + "," + password + "," + role + "\n");
             } catch (IOException ee) {
                 System.out.println("Error appending data to CSV file: " + ee.getMessage());
@@ -85,7 +88,7 @@ public final class Read_Write {
     }
 
     public static int Login(String userName,String password)throws UserNotFoundException{
-        try (Scanner scanner = new Scanner(new File(FILEPATH +USERS_CSV_FILEName))) {
+        try (Scanner scanner = new Scanner(new File(USERS_CSV_FILEPATH))) {
             if(scanner.hasNextLine()){
                 scanner.nextLine(); // Skip the header
             }
@@ -105,9 +108,9 @@ public final class Read_Write {
         }
     }
 
-    public static void initializeJSON(String studnetUsername) {
-        Student student = new Student(User.userCount+1, studnetUsername);
-        try (FileWriter writer = new FileWriter(FILEPATH+studnetUsername+".json")) {
+    public static void initializeJSON(String studentUsername) {
+        Student student = new Student(User.userCount+1, studentUsername);
+        try (FileWriter writer = new FileWriter(SYSTEM_FILEPATH + studentUsername + ".json")) {
             writer.write(new Gson().toJson(student));
             System.out.println("User JSON written to file successfully.");
         } catch (IOException e) {
@@ -119,7 +122,7 @@ public final class Read_Write {
             .registerTypeAdapter(Course.class, new CourseAdapter())
             .create();
 
-        try (Writer writer = new FileWriter(FILEPATH+ userName+".json")) {
+        try (Writer writer = new FileWriter(SYSTEM_FILEPATH + userName + ".json")) {
             gson.toJson(user, writer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -131,7 +134,7 @@ public final class Read_Write {
                     .registerTypeAdapter(Course.class, new CourseAdapter())
                     .create();
     
-        try (Reader reader = new FileReader(FILEPATH+userName+".json")) {
+        try (Reader reader = new FileReader(SYSTEM_FILEPATH + userName + ".json")) {
             // Try to deserialize the JSON as a Student
             Student student = gson.fromJson(reader, Student.class);
             if (student != null) {
@@ -177,7 +180,7 @@ public final class Read_Write {
     public static void deleteLineByUsername(String usernameToDelete) throws IOException {
         List<String> lines = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILEPATH + USERS_CSV_FILEName))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(USERS_CSV_FILEPATH))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
@@ -188,7 +191,7 @@ public final class Read_Write {
             }
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILEPATH + USERS_CSV_FILEName))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(USERS_CSV_FILEPATH))) {
             for (String line : lines) {
                 writer.write(line);
                 writer.newLine();

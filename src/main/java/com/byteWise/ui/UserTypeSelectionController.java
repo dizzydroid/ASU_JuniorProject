@@ -25,7 +25,7 @@ public class UserTypeSelectionController {
     }
 
     private void loadSignUpDetails(String userType) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("./SignUpDetails.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUpDetails.fxml"));
         Parent root = loader.load();
 
         SignUpDetailsController signUpDetailsController = loader.getController();

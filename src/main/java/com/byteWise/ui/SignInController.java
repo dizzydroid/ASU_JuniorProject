@@ -23,6 +23,8 @@ import src.main.java.com.byteWise.users.User;
 // import lib.users.User;
 
 public class SignInController {
+    
+
 
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
@@ -30,6 +32,8 @@ public class SignInController {
 
    @FXML
    private void handleSignInAction() {
+    Read_Write.setFilePath();
+    System.out.println("Read_me: "+Read_Write.getFILEPATH());
     String username = usernameField.getText().trim();
     String password = passwordField.getText().trim();
     try {
@@ -38,7 +42,7 @@ public class SignInController {
         Parent root;
         switch (userRole) {
             case 0: // Student
-                loader.setLocation(getClass().getResource("src/main/java/com/byteWise/ui/StudentDashboard.fxml"));
+                loader.setLocation(getClass().getResource("StudentDashboard.fxml"));
                 root = loader.load();
                 // Set the username on the student dashboard
                 StudentDashboardController studentController = loader.getController();
@@ -46,7 +50,7 @@ public class SignInController {
                 feedbackText.setText("Login successful. Welcome, Student!");
                 break;
             case 1: // Instructor
-                loader.setLocation(getClass().getResource("src/main/java/com/byteWise/ui/InstructorDashboard.fxml"));
+                loader.setLocation(getClass().getResource("InstructorDashboard.fxml"));
                 root = loader.load();
                 // Set the username on the instructor dashboard
                 InstructorDashboardController instructorController = loader.getController();
@@ -54,7 +58,7 @@ public class SignInController {
                 feedbackText.setText("Login successful. Welcome, Instructor!");
                 break;
             case 2: // Admin
-                loader.setLocation(getClass().getResource("src/main/java/com/byteWise/ui/AdminDashboard.fxml"));
+                loader.setLocation(getClass().getResource("AdminDashboard.fxml"));
                 root = loader.load();
                 // Set the username on the admin dashboard
                 AdminDashboardController adminController = loader.getController();

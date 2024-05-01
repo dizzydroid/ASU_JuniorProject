@@ -20,14 +20,13 @@ public class Main extends Application {
         Parent root = loader.load();
        // WelcomeSceneController controller = loader.getController();
         Scene scene = new Scene(root, Color.gray(0.9)); // add the root node to the scene and pass a paint color
-        String css = this.getClass().getResource("./styles.css").toExternalForm();
+        String css = this.getClass().getResource("styles.css").toExternalForm();
 
         scene.getStylesheets().add(css);
 
 
         stage.setTitle("Demo");
-        System.out.println(Read_Write.getFILEPATH());
-        Image icon = new Image(Read_Write.getFILEPATH()+"\\src\\main\\java\\com\\byteWise\\ui\\icon.png"); //-> FIXME: this causes problems
+        Image icon = new Image(Read_Write.getFILEPATH()+"\\src\\main\\java\\com\\byteWise\\ui\\icon.png");
         stage.getIcons().add(icon);
 
         stage.setScene(scene);
