@@ -31,7 +31,7 @@
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Text>
-      <Button fx:id="signInButton" layoutX="232.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleSignInAction" prefHeight="70.0" prefWidth="146.0" styleClass="signbutton" stylesheets="@styles.css" text="SIGN IN" />
+      <Button fx:id="signInButton" defaultButton="true" layoutX="232.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleSignInAction" prefHeight="70.0" prefWidth="146.0" styleClass="signbutton" stylesheets="@styles.css" text="SIGN IN" />
       <Text fill="#6b6b6b" layoutX="189.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Did you forget to eat? Did you forget to breathe?">
          <font>
             <Font name="System Italic" size="16.0" />
