@@ -26,7 +26,7 @@ public class Student extends User {
     public void enrollInCourse(Course course) throws CourseNotFoundException {
         if (!courses.contains(course)) {
             courses.add(course);
-            Read_Write.writeToJson(this, this.getName());
+            Read_Write.writeToJson(this);
             System.out.println("Enrolled in course: " + course.getCourseTitle());
         } else if (courses.contains(course)){
             throw new CourseNotFoundException("Can't enroll in course. Course already enrolled.");
@@ -38,7 +38,7 @@ public class Student extends User {
     public void dropCourse(Course course) throws CourseNotFoundException{
         if (courses.contains(course)) {
             courses.remove(course);
-            Read_Write.writeToJson(this, this.getName());
+            Read_Write.writeToJson(this);
             System.out.println("Dropped course: " + course.getCourseTitle());
         } else {
             throw new CourseNotFoundException("Can't drop course. Course not found.");

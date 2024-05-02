@@ -38,8 +38,7 @@ public class SignInController {
                 root = loader.load();
                 StudentDashboardController studentController = loader.getController();
                 studentController.setUserName(username);
-                Student student = (Student) Read_Write.readFromJson(username);
-                studentController.setStudent(student);
+                studentController.setStudent((Student)Read_Write.readFromJson(username,0));
                 feedbackText.setText("Login successful. Welcome, Student!");
                 break;
             case 1: // Instructor
@@ -47,7 +46,7 @@ public class SignInController {
                 root = loader.load();
                 InstructorDashboardController instructorController = loader.getController();
                 instructorController.setUserName(username);
-                instructorController.setInstructor((Instructor) Read_Write.readFromJson(username));
+                instructorController.setInstructor((Instructor)Read_Write.readFromJson(username,1));
                 feedbackText.setText("Login successful. Welcome, Instructor!");
                 break;
             case 2: // Admin

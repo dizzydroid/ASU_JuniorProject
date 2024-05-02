@@ -125,36 +125,38 @@ public final class Read_Write {
         }      
     }
     
-    public static void writeToJson(User user, String userName) {
+    public static void writeToJson(User user) {
         Gson gson = new GsonBuilder()
             .registerTypeAdapter(Course.class, new CourseAdapter())
             .create();
 
-        try (Writer writer = new FileWriter(FILEPATH +SYSTEM_FILEPATH + userName + ".json")) {
+        try (Writer writer = new FileWriter(FILEPATH +SYSTEM_FILEPATH + user.getName() + ".json")) {
             gson.toJson(user, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
  
-    public static User readFromJson(String userName) {
+    public static User readFromJson(String userName,int role) {
         Gson gson = new GsonBuilder()
                     .registerTypeAdapter(Course.class, new CourseAdapter())
                     .create();
     
         try (Reader reader = new FileReader(FILEPATH +SYSTEM_FILEPATH + userName + ".json")) {
             // Try to deserialize the JSON as a Student
-            Student student = gson.fromJson(reader, Student.class);
-            if (student != null) {
-                return student;
+            if (role == 0) {
+                Student student = gson.fromJson(reader, Student.class);
+                if (student != null) {
+                    return student;
+                }
             }
-    
             // If the JSON couldn't be deserialized as a Student, try to deserialize it as an Instructor
-            Instructor instructor = gson.fromJson(reader, Instructor.class);
-            if (instructor != null) {
-                return instructor;
+            else {
+                Instructor instructor = gson.fromJson(reader, Instructor.class);
+                if (instructor != null) {
+                    return instructor;
+                }
             }
-    
             // If the JSON couldn't be deserialized as a Student or an Instructor, return null
             return null;
         } catch (IOException e) {

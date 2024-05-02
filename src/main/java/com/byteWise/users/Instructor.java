@@ -27,7 +27,7 @@ public class Instructor extends User {
     public void addCourse(Course course) throws CourseNotFoundException {
         if (!courses.contains(course)) {
             courses.add(course);
-            Read_Write.writeToJson(this, this.getName());
+            Read_Write.writeToJson(this);
             System.out.println("Added course to teach: " + course.getCourseTitle());
         } else if (courses.contains(course)){
             throw new CourseNotFoundException("Can't add course. Course already teaching.");
@@ -39,7 +39,7 @@ public class Instructor extends User {
     public void removeCourse(Course course) {
         if (courses.contains(course)) {
             courses.remove(course);
-            Read_Write.writeToJson(this, this.getName());
+            Read_Write.writeToJson(this);
             System.out.println("Removed course from teaching: " + course.getCourseTitle());
         } else {
             System.out.println("Can't remove course. Course not found.");
