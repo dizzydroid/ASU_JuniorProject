@@ -3,6 +3,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import src.main.java.com.byteWise.users.Student;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
@@ -14,6 +15,11 @@ import java.util.Optional;
 
 public class StudentDashboardController {
     private static StudentDashboardController instance;
+      private Student student;
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     public static StudentDashboardController getInstance() {
         if (instance == null) {
@@ -80,6 +86,8 @@ public class StudentDashboardController {
     // Method for handling the Profile button action
     @FXML
     private void handleProfileAction() {
+        // debugging, try printing student object attributes
+      //  System.out.println("Student: " + student.getName());
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Profile Options");
 

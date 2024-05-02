@@ -12,14 +12,23 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import src.main.java.com.byteWise.users.Instructor;
+import src.main.java.com.byteWise.users.Student;
 
 public class InstructorDashboardController {
+
+    private Instructor instructor;
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
 
     @FXML
     private Text userName;
 
     @FXML
     private Button addCoursesBtn, removeCoursesBtn, myTeachingBtn, profileBtn;
+
 
     public void setUserName(String name) {
         userName.setText(name);
