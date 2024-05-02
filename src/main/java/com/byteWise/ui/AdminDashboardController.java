@@ -12,8 +12,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import src.main.java.com.byteWise.users.Admin;
 
 public class AdminDashboardController {
+    private Admin admin;
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
 
     @FXML
     private Text userName;

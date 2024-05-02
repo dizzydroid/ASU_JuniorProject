@@ -9,6 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import src.main.java.com.byteWise.users.Admin;
 import src.main.java.com.byteWise.users.Instructor;
 import src.main.java.com.byteWise.users.Student;
 import src.main.java.com.byteWise.filesystem.Read_Write;
@@ -54,6 +55,7 @@ public class SignInController {
                 root = loader.load();
                 AdminDashboardController adminController = loader.getController();
                 adminController.setUserName(username);
+                adminController.setAdmin(new Admin(Read_Write.generateId(),username));
                 feedbackText.setText("Login successful. Welcome, Admin!");
                 break;
             default:
