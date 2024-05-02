@@ -13,6 +13,16 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import java.util.Optional;
 
 public class StudentDashboardController {
+    private static StudentDashboardController instance;
+
+    public static StudentDashboardController getInstance() {
+        if (instance == null) {
+            instance = new StudentDashboardController();
+        }
+        return instance;
+    }
+    
+    
 
     @FXML
     private Text userName;
@@ -20,9 +30,33 @@ public class StudentDashboardController {
     @FXML
     private Button myLearningBtn, discoverBtn, giveUpBtn, profileBtn;
 
+    private DiscoverController discoverController;
+
+    public void setDiscoverController(DiscoverController controller) {
+        this.discoverController = controller;
+        setUsername();
+    }
+
+    public void setUsername() {
+        if (discoverController != null) {
+            userName.setText(discoverController.getUsername());
+        }
+    }
+    
     // Method to set the user's name on the dashboard
     public void setUserName(String name) {
         userName.setText(name);
+        setUserNameInUserData(); // Add this line to set the username in UserData singleton
+    }
+
+    // getter for username
+    public String getUsername() {
+        return userName.getText();
+    }
+
+    // Method to set the user's name in the UserData singleton
+    private void setUserNameInUserData() {
+        UserData.getInstance().setUsername(userName.getText());
     }
 
     // Method for handling the My Learning button action
@@ -102,10 +136,22 @@ public class StudentDashboardController {
         infoAlert.showAndWait();
     }
 
+    // private void changeScene(String fxmlFile) throws IOException {
+    //     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+    //     Stage stage = (Stage) userName.getScene().getWindow();
+    //     Scene scene = new Scene(loader.load());
+    //     stage.setScene(scene);
+    // }
+
     private void changeScene(String fxmlFile) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-        Stage stage = (Stage) userName.getScene().getWindow();
         Scene scene = new Scene(loader.load());
+        if (fxmlFile.equals("DiscoverScene.fxml")) {
+            DiscoverController discoverController = loader.getController();
+            discoverController.setStudentDashboardController(this);
+        }
+        Stage stage = (Stage) userName.getScene().getWindow();
         stage.setScene(scene);
     }
+    
 }

@@ -15,16 +15,8 @@ import src.main.java.com.byteWise.filesystem.Read_Write;
 import src.main.java.com.byteWise.filesystem.Read_Write.UserAlreadyExistsException;
 import src.main.java.com.byteWise.filesystem.Read_Write.UserNotFoundException;
 import src.main.java.com.byteWise.users.User;
-// import lib.users.Instructor;
-// import lib.users.Student;
-// import lib.filesystem.Read_Write;
-// import lib.filesystem.Read_Write.UserAlreadyExistsException;
-// import lib.filesystem.Read_Write.UserNotFoundException;
-// import lib.users.User;
 
 public class SignInController {
-    
-
 
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
@@ -33,7 +25,6 @@ public class SignInController {
    @FXML
    private void handleSignInAction() {
     Read_Write.setFilePath();
-    System.out.println("Read_me: "+Read_Write.getFILEPATH());
     String username = usernameField.getText().trim();
     String password = passwordField.getText().trim();
     try {
@@ -44,7 +35,6 @@ public class SignInController {
             case 0: // Student
                 loader.setLocation(getClass().getResource("StudentDashboard.fxml"));
                 root = loader.load();
-                // Set the username on the student dashboard
                 StudentDashboardController studentController = loader.getController();
                 studentController.setUserName(username);
                 feedbackText.setText("Login successful. Welcome, Student!");
@@ -52,7 +42,6 @@ public class SignInController {
             case 1: // Instructor
                 loader.setLocation(getClass().getResource("InstructorDashboard.fxml"));
                 root = loader.load();
-                // Set the username on the instructor dashboard
                 InstructorDashboardController instructorController = loader.getController();
                 instructorController.setUserName(username);
                 feedbackText.setText("Login successful. Welcome, Instructor!");
@@ -60,7 +49,6 @@ public class SignInController {
             case 2: // Admin
                 loader.setLocation(getClass().getResource("AdminDashboard.fxml"));
                 root = loader.load();
-                // Set the username on the admin dashboard
                 AdminDashboardController adminController = loader.getController();
                 adminController.setUserName(username);
                 feedbackText.setText("Login successful. Welcome, Admin!");
@@ -68,6 +56,8 @@ public class SignInController {
             default:
                 throw new UserNotFoundException("Invalid user role");
         }
+
+        UserData.getInstance().setUsername(username); // Set username in UserData singleton for use in other controllers
 
         Scene scene = new Scene(root);
         Stage stage = (Stage) usernameField.getScene().getWindow();
@@ -79,7 +69,5 @@ public class SignInController {
     } catch (IOException e) {
         feedbackText.setText("Error loading the dashboard: " + e.getMessage());
     }
-}
-
-
+  }
 }
