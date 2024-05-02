@@ -115,7 +115,7 @@ public final class Read_Write {
         } else {
             user = new Instructor(generateId(), userName);
         }
-        try (FileWriter writer = new FileWriter(SYSTEM_FILEPATH + userName + ".json")) {
+        try (FileWriter writer = new FileWriter( FILEPATH +SYSTEM_FILEPATH + userName + ".json")) {
             writer.write(new Gson().toJson(user));
             System.out.println("User JSON written to file successfully.");
         } catch (IOException e) {
@@ -128,7 +128,7 @@ public final class Read_Write {
             .registerTypeAdapter(Course.class, new CourseAdapter())
             .create();
 
-        try (Writer writer = new FileWriter(SYSTEM_FILEPATH + userName + ".json")) {
+        try (Writer writer = new FileWriter(FILEPATH +SYSTEM_FILEPATH + userName + ".json")) {
             gson.toJson(user, writer);
         } catch (IOException e) {
             e.printStackTrace();
@@ -140,7 +140,7 @@ public final class Read_Write {
                     .registerTypeAdapter(Course.class, new CourseAdapter())
                     .create();
     
-        try (Reader reader = new FileReader(SYSTEM_FILEPATH + userName + ".json")) {
+        try (Reader reader = new FileReader(FILEPATH +SYSTEM_FILEPATH + userName + ".json")) {
             // Try to deserialize the JSON as a Student
             Student student = gson.fromJson(reader, Student.class);
             if (student != null) {

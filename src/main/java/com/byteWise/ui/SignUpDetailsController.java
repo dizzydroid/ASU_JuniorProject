@@ -56,13 +56,13 @@ public class SignUpDetailsController {
             if ("Student".equals(userType)) {
                 newUser = new Student(Read_Write.generateId(), username);
                 Read_Write.Signup(username, password, 0); // Assuming this registers the user
-              // Read_Write.initializeJSON(newUser); // Serialize the newly created user -> FIXME: causes error
+                Read_Write.initializeJSON(newUser.getName(),0); // Serialize the newly created user -> FIXME: causes error
                 feedbackText.setText("New student account created successfully!");
                 redirectToSignIn();
             } else if ("Instructor".equals(userType)) {
                 newUser = new Instructor(Read_Write.generateId(), username);
                 Read_Write.Signup(username, password, 1); // Assuming this registers the user
-              //  Read_Write.initializeJSON(newUser); // Serialize the newly created user -> FIXME: causes error
+                Read_Write.initializeJSON(newUser.getName(),1); // Serialize the newly created user -> FIXME: causes error
                 feedbackText.setText("New instructor account created successfully!");
                 redirectToSignIn();
             } else {
