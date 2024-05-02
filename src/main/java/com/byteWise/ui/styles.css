@@ -95,3 +95,14 @@
 .manage-courses-button {
     -fx-background-color: #ba3026; /* Red */
 }
+
+.addCourse-button {
+    -fx-background-color: #09ac50; /* Green background color */
+    -fx-text-fill: white;
+    -fx-text-alignment: center;
+    /*make the button an ellipse*/
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-border-width: 0; /* No border */
+
+}

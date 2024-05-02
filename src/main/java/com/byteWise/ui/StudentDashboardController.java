@@ -28,7 +28,7 @@ public class StudentDashboardController {
     // Method for handling the My Learning button action
     @FXML
     private void handleMyLearningAction() throws IOException {
-        changeScene("MyLearningScene.fxml");
+        changeScene("MyLearning.fxml");
     }
 
     // Method for handling the Discover button action
