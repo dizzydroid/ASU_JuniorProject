@@ -11,11 +11,11 @@ public class TextCourse extends Course {
     public TextCourse(String courseId, String courseTitle, String description, String courseTag) {
         super(courseId, courseTitle, description, courseTag);
     }
-    public String getResourceLink() {
+    public String getLink() {
         return resourceLink;
     }
 
-    public void setResourceLink(String resourceLink) {
+    public void setLink(String resourceLink) {
         this.resourceLink = resourceLink;
     }
 

@@ -98,5 +98,6 @@ public abstract class Course implements Comparable<Course> , Assessable {
     public void setQuizzes(List<Quiz> quizzes) {
         this.quizzes = quizzes;
     }
-    
+    public abstract String getLink();
+    public abstract void setLink(String link);
 }
