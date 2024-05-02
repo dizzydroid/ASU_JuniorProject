@@ -1,4 +1,5 @@
 package src.main.java.com.byteWise.users;
+
 import src.main.java.com.byteWise.courses.Course;
 import src.main.java.com.byteWise.filesystem.Read_Write;
 
@@ -23,11 +24,6 @@ public class Admin extends User {
         System.out.println("Created user: " +userName);
     }
 
-    public void deleteCourse(Course course) throws CourseNotFoundException {
-        // Implementation for deleting a course
-        System.out.println("Deleted course: " + course.getCourseTitle());
-    }
-
     public void deleteUser(String userName) throws UserNotFoundException {
         try {Read_Write.deleteLineByUsername(userName);
         }
@@ -35,6 +31,16 @@ public class Admin extends User {
             throw new UserNotFoundException("User not found");
         }
         System.out.println("Deleted user: " + userName);
+    }
+    
+    public void createCourse(Course course){
+        Read_Write.WriteToCoursesFile(course);
+        System.out.println("Created course: " + course.getCourseTitle());
+    }
+
+    public void deleteCourse(Course course){
+        Read_Write.deleteCourse(course);
+        System.out.println("Deleted course: " + course.getCourseTitle());
     }
 
     public static class CourseNotFoundException extends Exception {

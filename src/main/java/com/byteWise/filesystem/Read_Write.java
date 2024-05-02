@@ -209,7 +209,7 @@ public final class Read_Write {
     
     public static void WriteToCoursesFile(Course course) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(Courses_FILEPATH, true))) {
-            writer.write( course.getClass().getSimpleName() + ","
+            writer.write(course.getClass().getSimpleName() + ","
             + course.getCourseId() + "," 
             + course.getCourseTitle() + "," 
             + course.getDescription() + "," 
@@ -243,6 +243,33 @@ public final class Read_Write {
         }
         return courses;
     }
+
+    public static void deleteCourse(Course course){
+        ArrayList<String> lines = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(Courses_FILEPATH))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 1 && parts[2].equals(course.getCourseTitle())) {
+                    continue; // Skip this line
+                }
+                lines.add(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading data from CSV file: " + e.getMessage());
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Courses_FILEPATH))) {
+            for (String line : lines) {
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error writing data to CSV file: " + e.getMessage());
+        }
+    }
+
     public static class CourseNotFoundException extends Exception {
         public CourseNotFoundException(String message) {
             super(message);
