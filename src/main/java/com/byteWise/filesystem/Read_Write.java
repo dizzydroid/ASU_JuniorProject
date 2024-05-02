@@ -34,6 +34,7 @@ public final class Read_Write {
     private static String SYSTEM_FILEPATH = "\\src\\main\\java\\com\\byteWise\\filesystem\\";
     private static String USERS_CSV_FILEPATH;
     private static String ID_FILE;
+    private static String Courses_FILEPATH;
 
        
     public static String getFILEPATH() {
@@ -43,6 +44,7 @@ public final class Read_Write {
         FILEPATH = System.getProperty("user.dir"); // set the file path to the current directory
         USERS_CSV_FILEPATH = FILEPATH + SYSTEM_FILEPATH + "Users.csv";
         ID_FILE = FILEPATH + SYSTEM_FILEPATH + "last_id.txt";
+        Courses_FILEPATH = FILEPATH + SYSTEM_FILEPATH + "Courses.csv";
     }
 
     public static synchronized int generateId() {
@@ -204,6 +206,22 @@ public final class Read_Write {
             }
         }
     }
+    //DO NOT UNCOMMENT THIS CODE,STILL WORKING ON IT.
+    
+    // public static void WriteToCoursesFile(Course course) {
+    //     try (BufferedWriter writer = new BufferedWriter(new FileWriter(Courses_FILEPATH, true))) {
+    //         writer.write( course.getClass().getSimpleName() + ","
+    //         + course.getCourseId() + "," 
+    //         + course.getCourseTitle() + "," 
+    //         + course.getDescription() + "," 
+    //         + course.getCourseTag() + "," 
+    //         + course.getProgress() + ","
+    //         + course.getLink() + "\n");  // FIX ME
+    //     } catch (IOException e) {
+    //         System.out.println("Error appending data to CSV file: " + e.getMessage());
+    //     }
+    // }
+
     public static class CourseNotFoundException extends Exception {
         public CourseNotFoundException(String message) {
             super(message);
