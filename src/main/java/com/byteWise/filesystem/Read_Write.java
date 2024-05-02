@@ -22,11 +22,11 @@ import com.google.gson.JsonSerializer;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonDeserializationContext;
 import src.main.java.com.byteWise.courses.Course;
+import src.main.java.com.byteWise.courses.TextCourse;
+import src.main.java.com.byteWise.courses.VideoCourse;
 import src.main.java.com.byteWise.users.Instructor;
 import src.main.java.com.byteWise.users.Student;
 import src.main.java.com.byteWise.users.User;
-import src.main.java.com.byteWise.users.Admin.UserAlreadyExistsException;
-import src.main.java.com.byteWise.users.Admin.UserNotFoundException;
 
 public final class Read_Write {
 
@@ -206,22 +206,43 @@ public final class Read_Write {
             }
         }
     }
-    //DO NOT UNCOMMENT THIS CODE,STILL WORKING ON IT.
     
-    // public static void WriteToCoursesFile(Course course) {
-    //     try (BufferedWriter writer = new BufferedWriter(new FileWriter(Courses_FILEPATH, true))) {
-    //         writer.write( course.getClass().getSimpleName() + ","
-    //         + course.getCourseId() + "," 
-    //         + course.getCourseTitle() + "," 
-    //         + course.getDescription() + "," 
-    //         + course.getCourseTag() + "," 
-    //         + course.getProgress() + ","
-    //         + course.getLink() + "\n");  // FIX ME
-    //     } catch (IOException e) {
-    //         System.out.println("Error appending data to CSV file: " + e.getMessage());
-    //     }
-    // }
+    public static void WriteToCoursesFile(Course course) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Courses_FILEPATH, true))) {
+            writer.write( course.getClass().getSimpleName() + ","
+            + course.getCourseId() + "," 
+            + course.getCourseTitle() + "," 
+            + course.getDescription() + "," 
+            + course.getLink() + "\n");  // FIX ME
+        } catch (IOException e) {
+            System.out.println("Error appending data to CSV file: " + e.getMessage());
+        }
+    }
 
+    public static ArrayList<Course> ReadFromCoursesFile() {
+        ArrayList<Course> courses = new ArrayList<>();
+        try (Scanner scanner = new Scanner(new File(Courses_FILEPATH))) {
+            if(scanner.hasNextLine()){
+                scanner.nextLine(); // Skip the header
+            }
+            while (scanner.hasNextLine()) {
+                String[] data = scanner.nextLine().split(",");
+                Course course ;
+                if(data[0].equals("TextCourse")){
+                    course = new TextCourse(data[1], data[2], data[3],null);
+                    course.setLink(data[4]);
+                }
+                else{
+                    course = new VideoCourse(data[1], data[2], data[3],null);
+                    course.setLink(data[4]);
+                }
+                courses.add(course);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading data from CSV file: " + e.getMessage());
+        }
+        return courses;
+    }
     public static class CourseNotFoundException extends Exception {
         public CourseNotFoundException(String message) {
             super(message);
