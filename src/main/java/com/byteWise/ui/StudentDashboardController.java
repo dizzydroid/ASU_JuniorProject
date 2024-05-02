@@ -21,6 +21,10 @@ public class StudentDashboardController {
         this.student = student;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
     public static StudentDashboardController getInstance() {
         if (instance == null) {
             instance = new StudentDashboardController();
@@ -36,18 +40,6 @@ public class StudentDashboardController {
     @FXML
     private Button myLearningBtn, discoverBtn, giveUpBtn, profileBtn;
 
-    private DiscoverController discoverController;
-
-    public void setDiscoverController(DiscoverController controller) {
-        this.discoverController = controller;
-        setUsername();
-    }
-
-    public void setUsername() {
-        if (discoverController != null) {
-            userName.setText(discoverController.getUsername());
-        }
-    }
     
     // Method to set the user's name on the dashboard
     public void setUserName(String name) {
