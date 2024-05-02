@@ -1,4 +1,5 @@
 USER,PASS,ROLE
+admin,admin,2
 test8,test8,0
 test9,test9,0
 bokshy,bokshy,1
@@ -10,3 +11,4 @@ youssef,123,0
 ash,ash,0
 ash,1463,0
 test10,test10,0
+seif,seif,0
