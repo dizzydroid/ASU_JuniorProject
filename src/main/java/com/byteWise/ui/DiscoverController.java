@@ -9,6 +9,8 @@ import javafx.scene.control.Dialog;
 import javafx.scene.image.ImageView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import src.main.java.com.byteWise.courses.Course;
+import src.main.java.com.byteWise.courses.TextCourse;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.util.Optional;
@@ -27,29 +29,36 @@ public class DiscoverController {
         this.studentDashboardController = controller;
     }
 
+    // hardcoded courses
+    private Course course1 = new TextCourse("C1", "How To: Corn Flakes", "A deep dive into the art of cereal preparation.", "Food");
+    private Course course2 = new TextCourse("C2", "The Art of Managing Deadlines", "Learn strategies to manage deadlines effectively.", "Productivity");
+    private Course course3 = new TextCourse("C3", "Untitled Course", "A course about something that hasn't been decided yet.", "Mystery");
+
+
+
     @FXML
 public void handleAddCourse1Action() {
-    addCourse("course1");
+    studentDashboardController.getStudent().enrollInCourse(course1);
     System.out.println("Course 1 added successfully.");
 }
 
 @FXML
 public void handleAddCourse2Action() {
-    addCourse("course2");
+    studentDashboardController.getStudent().enrollInCourse(course2);
     System.out.println("Course 2 added successfully.");
 }
 
 @FXML
 public void handleAddCourse3Action() {
-    addCourse("course3");
+    studentDashboardController.getStudent().enrollInCourse(course3);
     System.out.println("Course 3 added successfully.");
 }
 
-private void addCourse(String courseId) {
-    // Logic to add the course to the student's registered courses
-    System.out.println("Adding course: " + courseId);
-    // Potentially update a list or database here
-}
+// private void addCourse(String courseId) {
+//     // Logic to add the course to the student's registered courses
+//     System.out.println("Adding course: " + courseId);
+//     // Potentially update a list or database here
+// }
 
 @FXML
 public void handleBackToDashboardAction() throws IOException {

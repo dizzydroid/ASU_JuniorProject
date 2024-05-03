@@ -15,12 +15,6 @@ import src.main.java.com.byteWise.filesystem.Read_Write;
 import src.main.java.com.byteWise.filesystem.Read_Write.UserAlreadyExistsException;
 import src.main.java.com.byteWise.filesystem.Read_Write.UserNotFoundException;
 import src.main.java.com.byteWise.users.User;
-// import lib.users.Instructor;
-// import lib.users.Student;
-// import lib.filesystem.Read_Write;
-// import lib.filesystem.Read_Write.UserAlreadyExistsException;
-// import lib.filesystem.Read_Write.UserNotFoundException;
-// import lib.users.User;
 
 public class SignUpDetailsController {
 
@@ -34,10 +28,6 @@ public class SignUpDetailsController {
     private String userType;
 
     public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
-    public void initUserType(String userType) {
         this.userType = userType;
     }
 
@@ -56,13 +46,13 @@ public class SignUpDetailsController {
             if ("Student".equals(userType)) {
                 newUser = new Student(Read_Write.generateId(), username);
                 Read_Write.Signup(username, password, 0); // Assuming this registers the user
-                Read_Write.initializeJSON(newUser.getName(),0); // Serialize the newly created user -> FIXME: causes error
+                Read_Write.initializeJSON(newUser.getName(),0); // Serialize the newly created user 
                 feedbackText.setText("New student account created successfully!");
                 redirectToSignIn();
             } else if ("Instructor".equals(userType)) {
                 newUser = new Instructor(Read_Write.generateId(), username);
                 Read_Write.Signup(username, password, 1); // Assuming this registers the user
-                Read_Write.initializeJSON(newUser.getName(),1); // Serialize the newly created user -> FIXME: causes error
+                Read_Write.initializeJSON(newUser.getName(),1); // Serialize the newly created user 
                 feedbackText.setText("New instructor account created successfully!");
                 redirectToSignIn();
             } else {
