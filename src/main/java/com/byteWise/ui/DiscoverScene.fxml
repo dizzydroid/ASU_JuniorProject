@@ -58,10 +58,17 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="backBtn" layoutX="204.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleBackToDashboardAction" styleClass="discover-button" stylesheets="@styles.css" text="BACK TO DASHBOARD!">
+      <Button fx:id="backBtn" layoutX="14.0" layoutY="-6.0" mnemonicParsing="false" onAction="#handleBackToDashboardAction" prefHeight="61.0" prefWidth="82.0" styleClass="student-button" stylesheets="@styles.css">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
+         <graphic>
+            <ImageView fx:id="homeImg" fitHeight="60.0" fitWidth="60.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" styleClass="student-button">
+               <image>
+                  <Image url="@../../../../../../assets/GUI%20assets/home.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
       <Text fx:id="debug" layoutX="46.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" />
    </children>

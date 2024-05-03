@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.image.ImageView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,9 @@ public class DiscoverController {
 
     @FXML
     private Button profileBtn, addBtn1, addBtn2, addBtn3, backBtn;
+
+    @FXML
+    private ImageView studentIMG;
 
     private StudentDashboardController studentDashboardController;
 
