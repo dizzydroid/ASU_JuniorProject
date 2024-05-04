@@ -1,9 +1,10 @@
 package src.main.java.com.byteWise.ui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ButtonBar.ButtonData;
@@ -12,72 +13,71 @@ import javafx.stage.Stage;
 import src.main.java.com.byteWise.courses.Course;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Optional;
-import javafx.scene.input.MouseEvent;
+import java.awt.Desktop;
 
 
-public class MyLearningController {
+public class CornController {
     @FXML
-    private Button profileBtn, backBtn;
-    
-    @FXML
-    private ListView<Course> coursesListView;
-
+    private Button profileBtn, backBtn, quizBtn;
+     @FXML
+    private Hyperlink vidLink;
 
     private StudentDashboardController studentDashboardController;
 
     public void setStudentDashboardController(StudentDashboardController controller) {
         this.studentDashboardController = controller;
         if (controller != null && controller.getStudent() != null) {
-            displayCourses(); // Ensure the controller and student are not null before attempting to display courses
+            System.out.println("StudentDashboardController and student are properly set.");
+        } else {
+            System.out.println("StudentDashboardController or student is null!");
         }
     }
-
-    // Method to initialize the scene with student's courses
+    
     @FXML
-    public void initialize() {
-        setupCourseListView();
-        if (studentDashboardController != null && studentDashboardController.getStudent() != null) {
-            displayCourses(); // Safety check before displaying courses
-        }
+    public void openLink(ActionEvent event) throws URISyntaxException, IOException {
+        System.out.println("Link clicked!");
+        Desktop.getDesktop().browse(new URI("https://www.youtube.com/watch?v=QvDrtGERbCw"));
     }
 
-    private void displayCourses() {
-        coursesListView.getItems().clear();
-        coursesListView.getItems().addAll(studentDashboardController.getStudent().getCourses());
+    // taking quiz button action
+    @FXML
+    public void handleQuizAction() {
+        
     }
-
-    
-    private void setupCourseListView() {
-        coursesListView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) { // Detect double-click
-                Course selectedCourse = coursesListView.getSelectionModel().getSelectedItem();
-                System.out.println("Double-click detected on: " + selectedCourse.getCourseTitle()); // Debug output
-                if (selectedCourse != null && "How To: Corn Flakes".equals(selectedCourse.getCourseTitle())) {
-                    try {
-                        System.out.println("Attempting to change scene to CornFlakes.fxml"); // Debug output
-                        changeScene("CornFlakes.fxml"); // Change to the Corn Flakes course scene
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        showAlert("Error", "Failed to load the course page.");
-                    }
-                } else {
-                    System.out.println("Selected course does not match 'How To: Corn Flakes'"); // Debug output
-                }
-            }
-        });
-    }
-    
-
 
     @FXML
     private void handleBackToDashboardAction() throws IOException {
         changeScene("StudentDashboard.fxml");
     }
 
+
+     // Utility method for changing scenes
+     private void changeScene(String fxmlFile) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Scene scene = new Scene(loader.load());
+        if (fxmlFile.equals("StudentDashboard.fxml")) {
+            StudentDashboardController studentDashboardController = loader.getController();
+            studentDashboardController.setStudent(this.studentDashboardController.getStudent());
+            studentDashboardController.setUserName(this.studentDashboardController.getStudent().getName());
+        }
+        Stage stage = (Stage) backBtn.getScene().getWindow();
+        stage.setScene(scene);
+    }
+    
+
     // Profile button action that mirrors functionality in DiscoverController
     @FXML
     private void handleProfileAction() {
+        // System.out.println("Checking controller: " + studentDashboardController);  // Debug statement
+        // System.out.println("Checking student: " + (studentDashboardController != null ? studentDashboardController.getStudent() : "null"));  // Debug statement
+    
+        if (studentDashboardController == null || studentDashboardController.getStudent() == null) {
+            showAlert("Error", "No student data available.");
+            return;
+        }
         if (studentDashboardController == null || studentDashboardController.getStudent() == null) {
             showAlert("Error", "No student data available.");
             return;
@@ -131,7 +131,6 @@ public class MyLearningController {
         }
     }
 
-
     private void showAlert(String title, String content) {
         Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
         infoAlert.setTitle(title);
@@ -140,19 +139,4 @@ public class MyLearningController {
         infoAlert.showAndWait();
     }
 
-    // Utility method for changing scenes
-    private void changeScene(String fxmlFile) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-        Scene scene = new Scene(loader.load());
-        if (fxmlFile.equals("StudentDashboard.fxml")) {
-            StudentDashboardController studentDashboardController = loader.getController();
-            studentDashboardController.setStudent(this.studentDashboardController.getStudent());
-            studentDashboardController.setUserName(this.studentDashboardController.getStudent().getName());
-        } else if (fxmlFile.equals("CornFlakes.fxml")){
-            CornController cornController = loader.getController();
-            cornController.setStudentDashboardController(studentDashboardController);
-        }
-        Stage stage = (Stage) backBtn.getScene().getWindow();
-        stage.setScene(scene);
-    }
 }

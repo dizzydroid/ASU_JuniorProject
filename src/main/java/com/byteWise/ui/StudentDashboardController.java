@@ -145,11 +145,13 @@ public class StudentDashboardController {
         } else if (fxmlFile.equals("MyLearning.fxml")){
             MyLearningController myLearningController = loader.getController();
             myLearningController.setStudentDashboardController(this);
-        
         } else if (fxmlFile.equals("GiveUpScene.fxml")){
             GiveUpController giveUpController = loader.getController();
             giveUpController.setStudentDashboardController(this);
-        } else {}
+        }// else if (fxmlFile.equals("CornFlakes.fxml")){
+           // CornController cornController = loader.getController();
+           // cornController.setStudentDashboardController(this);
+        // }
         Stage stage = (Stage) userName.getScene().getWindow();
         stage.setScene(scene);
     }

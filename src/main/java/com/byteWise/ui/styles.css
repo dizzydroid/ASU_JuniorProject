@@ -100,6 +100,10 @@
     -fx-background-color: #ba3026; /* Red */
 }
 
+.manage-courses-button:hover {
+    -fx-background-color: #680909; /*darker red */
+}
+
 .addCourse-button {
     -fx-background-color: #09ac50; /* Green background color */
     -fx-text-fill: white;
