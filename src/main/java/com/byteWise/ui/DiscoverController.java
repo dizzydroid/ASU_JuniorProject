@@ -1,19 +1,24 @@
 package src.main.java.com.byteWise.ui;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import src.main.java.com.byteWise.courses.Course;
 import src.main.java.com.byteWise.courses.TextCourse;
+import src.main.java.com.byteWise.filesystem.Read_Write;
 import src.main.java.com.byteWise.users.Student.CourseNotFoundException;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 public class DiscoverController {
@@ -22,20 +27,29 @@ public class DiscoverController {
     private Button profileBtn, addBtn1, addBtn2, addBtn3, backBtn;
 
     @FXML
+    private Button allCoursesBtn;
+
+    @FXML
     private ImageView studentIMG;
 
     private StudentDashboardController studentDashboardController;
 
     public void setStudentDashboardController(StudentDashboardController controller) {
         this.studentDashboardController = controller;
+        if (controller != null && controller.getStudent() != null) {
+            System.out.println("StudentDashboardController and student are properly set.");
+        } else {
+            System.out.println("StudentDashboardController or student is null!");
+        }
     }
-
+    
     // hardcoded courses
-    private Course course1 = new TextCourse("C1", "How To: Corn Flakes", "A deep dive into the art of cereal preparation.", "Food");
-    private Course course2 = new TextCourse("C2", "The Art of Managing Deadlines", "Learn strategies to manage deadlines effectively.", "Productivity");
-    private Course course3 = new TextCourse("C3", "Untitled Course", "A course about something that hasn't been decided yet.", "Mystery");
-
-
+    private Course course1 = new TextCourse("C1", "How To: Corn Flakes",
+            "A deep dive into the art of cereal preparation.", "Food");
+    private Course course2 = new TextCourse("C2", "The Art of Managing Deadlines",
+            "Learn strategies to manage deadlines effectively.", "Productivity");
+    private Course course3 = new TextCourse("C3", "Untitled Course",
+            "A course about something that hasn't been decided yet.", "Mystery");
 
     @FXML
     public void handleAddCourse1Action() {
@@ -49,7 +63,7 @@ public class DiscoverController {
     }
 
     @FXML
-    public void handleAddCourse2Action(){
+    public void handleAddCourse2Action() {
         try {
             studentDashboardController.getStudent().enrollInCourse(course2);
         } catch (CourseNotFoundException e) {
@@ -60,7 +74,7 @@ public class DiscoverController {
     }
 
     @FXML
-    public void handleAddCourse3Action(){
+    public void handleAddCourse3Action() {
         try {
             studentDashboardController.getStudent().enrollInCourse(course3);
         } catch (CourseNotFoundException e) {
@@ -70,11 +84,59 @@ public class DiscoverController {
         }
     }
 
-@FXML
-public void handleBackToDashboardAction() throws IOException {
-    changeScene("StudentDashboard.fxml");
-}
+    @FXML
+    public void handleAllCoursesAction() {
+        List<Course> allCourses = Read_Write.ReadFromCoursesFile();
+        showCoursesDialog(allCourses);
+    }
 
+    private void showCoursesDialog(List<Course> courses) {
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setTitle("All Courses");
+
+        // Create a custom pane for ListView and buttons
+        VBox vbox = new VBox(10);
+        ListView<Course> listView = new ListView<>();
+        listView.setItems(FXCollections.observableArrayList(courses));
+        Button addButton = new Button("Add Selected Course");
+
+        addButton.setOnAction(e -> {
+            Course selectedCourse = listView.getSelectionModel().getSelectedItem();
+            if (selectedCourse != null) {
+                try {
+                    // Using enrollInCourse to handle addition and validation
+                    try {
+                        studentDashboardController.getStudent().enrollInCourse(selectedCourse);
+                    } catch (IOException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                    Alert infoAlert = new Alert(Alert.AlertType.INFORMATION, "Course added successfully!");
+                    infoAlert.showAndWait();
+                } catch (CourseNotFoundException ex) { // This exception should be defined to handle duplicates or other issues
+                    System.out.println("Attempted to add duplicate course: " + selectedCourse);
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Course already added or another error occurred: " + ex.getMessage());
+                    errorAlert.showAndWait();
+                }
+            } else {
+                System.out.println("No course selected");
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR, "No course selected!");
+                errorAlert.showAndWait();
+            }
+        });
+        
+        
+
+        vbox.getChildren().addAll(listView, addButton);
+        dialog.getDialogPane().setContent(vbox);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+        dialog.showAndWait();
+    }
+
+    @FXML
+    public void handleBackToDashboardAction() throws IOException {
+        changeScene("StudentDashboard.fxml");
+    }
 
     // Handler for the Profile button
     @FXML
@@ -87,14 +149,15 @@ public void handleBackToDashboardAction() throws IOException {
         ButtonType signOutButtonType = new ButtonType("Sign Out", ButtonData.OTHER);
         ButtonType cancelButtonType = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
 
-        dialog.getDialogPane().getButtonTypes().addAll(usernameButtonType, passwordButtonType, signOutButtonType, cancelButtonType);
+        dialog.getDialogPane().getButtonTypes().addAll(usernameButtonType, passwordButtonType, signOutButtonType,
+                cancelButtonType);
 
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == usernameButtonType) {
                 return "Username: " + studentDashboardController.getStudent().getName();
             } else if (dialogButton == passwordButtonType) {
                 performSecurityCheck();
-                return null;  // Don't close the dialog on this option
+                return null; // Don't close the dialog on this option
             } else if (dialogButton == signOutButtonType) {
                 try {
                     changeScene("welcome_scene.fxml");
@@ -121,7 +184,8 @@ public void handleBackToDashboardAction() throws IOException {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == yesButton) {
-            showAlert("Password Revealed!", "So you forgot your password and thought you're getting away with it? Nice try.");
+            showAlert("Password Revealed!",
+                    "So you forgot your password and thought you're getting away with it? Nice try.");
         } else {
             showAlert("Access Denied", "Only humans can see passwords!");
         }
@@ -136,16 +200,19 @@ public void handleBackToDashboardAction() throws IOException {
     }
 
     // Utility method for changing scenes
-private void changeScene(String fxmlFile) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-    Scene scene = new Scene(loader.load());
-    if (fxmlFile.equals("StudentDashboard.fxml")) {
-        StudentDashboardController studentDashboardController = loader.getController();
-        studentDashboardController.setStudent(this.studentDashboardController.getStudent()); // Pass the student object back
-        studentDashboardController.setUserName(this.studentDashboardController.getStudent().getName()); // Re-set the username
+    private void changeScene(String fxmlFile) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Scene scene = new Scene(loader.load());
+        if (fxmlFile.equals("StudentDashboard.fxml")) {
+            StudentDashboardController studentDashboardController = loader.getController();
+            studentDashboardController.setStudent(this.studentDashboardController.getStudent()); // Pass the student
+                                                                                                 // object back
+            studentDashboardController.setUserName(this.studentDashboardController.getStudent().getName()); // Re-set
+                                                                                                            // the
+                                                                                                            // username
+        }
+        Stage stage = (Stage) backBtn.getScene().getWindow();
+        stage.setScene(scene);
     }
-    Stage stage = (Stage) backBtn.getScene().getWindow();
-    stage.setScene(scene);
-}
 
 }

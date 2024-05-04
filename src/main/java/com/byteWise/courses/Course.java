@@ -1,6 +1,7 @@
 package src.main.java.com.byteWise.courses;
 
 import java.util.List;
+import java.util.Objects;
 
 import src.main.java.com.byteWise.interfaces.Assessable;
 import src.main.java.com.byteWise.quiz.Quiz;
@@ -95,6 +96,20 @@ public abstract class Course implements Comparable<Course> , Assessable {
     public String toString() {
         return courseTitle; // Or any other meaningful representation
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Course course = (Course) obj;
+        return Objects.equals(courseId, course.courseId);  // Compare based on course ID or any unique identifier
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(courseId);  // Use the same unique identifier as in equals
+    }
+
     
     public List<Quiz> getQuizzes() {
         return quizzes;

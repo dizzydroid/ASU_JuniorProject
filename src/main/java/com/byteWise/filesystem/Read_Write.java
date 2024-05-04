@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import com.google.gson.Gson;
@@ -223,20 +224,35 @@ public final class Read_Write {
 
     public static ArrayList<Course> ReadFromCoursesFile() {
         ArrayList<Course> courses = new ArrayList<>();
-        try (Scanner scanner = new Scanner(new File(Courses_FILEPATH))) {
+        File file = new File(Courses_FILEPATH);
+        try (Scanner scanner = new Scanner(file)) {
             if(scanner.hasNextLine()){
                 scanner.nextLine(); // Skip the header
             }
             while (scanner.hasNextLine()) {
-                String[] data = scanner.nextLine().split(",");
-                Course course ;
-                if(data[0].equals("TextCourse")){
-                    course = new TextCourse(data[1], data[2], data[3],null);
-                    course.setLink(data[4]);
+                String line = scanner.nextLine().trim();
+                if (line.isEmpty()) continue; // Skip empty lines
+    
+                String[] data = line.split(",", -1); // Split with limit to keep empty elements
+                if (data.length < 4) {  // Ensure there are at least 4 elements
+                    System.out.println("Skipping incomplete course record: " + Arrays.toString(data));
+                    continue;
                 }
-                else{
-                    course = new VideoCourse(data[1], data[2], data[3],null);
-                    course.setLink(data[4]);
+    
+                String type = data[0].trim();
+                String courseId = data[1].trim();
+                String courseTitle = data[2].trim();
+                String description = data[3].trim();
+                String link = data.length > 4 ? data[4].trim() : null; // Handle optional link
+    
+                Course course;
+                if ("TextCourse".equals(type)) {
+                    course = new TextCourse(courseId, courseTitle, description, link);
+                } else if ("VideoCourse".equals(type)) {
+                    course = new VideoCourse(courseId, courseTitle, description, link);
+                } else {
+                    System.out.println("Unknown course type: " + type);
+                    continue; // Skip if the course type is unknown
                 }
                 courses.add(course);
             }
@@ -245,6 +261,9 @@ public final class Read_Write {
         }
         return courses;
     }
+    
+    
+
 
     public static void deleteCourse(Course course){
         ArrayList<String> lines = new ArrayList<>();

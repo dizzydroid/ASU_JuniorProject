@@ -34,6 +34,10 @@
     -fx-cursor: hand; /* Change cursor to hand when hovering over the button */
 }
 
+.blue-button {
+    -fx-background-color: #4c74af; /* Vibrant green */
+}
+
 .student-button {
     -fx-background-color: transparent; /* Makes the button background invisible */
     -fx-border-color: transparent; /* Hides the button border */

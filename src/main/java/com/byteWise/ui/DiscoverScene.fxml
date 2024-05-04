@@ -71,5 +71,10 @@
          </graphic>
       </Button>
       <Text fx:id="debug" layoutX="46.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Button fx:id="allCourses" layoutX="217.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleAllCoursesAction" prefHeight="0.0" prefWidth="162.0" styleClass="blue-button" stylesheets="@styles.css" text="VIEW ALL COURSES" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
