@@ -3,11 +3,13 @@ package src.main.java.com.byteWise.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import src.main.java.com.byteWise.courses.Course;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.util.Optional;
@@ -15,6 +17,10 @@ import java.util.Optional;
 public class MyLearningController {
     @FXML
     private Button profileBtn, backBtn;
+    
+    @FXML
+    private ListView<Course> coursesListView;
+
 
     private StudentDashboardController studentDashboardController;
 
@@ -26,6 +32,7 @@ public class MyLearningController {
     }
 
     // Method to initialize the scene with student's courses
+    @FXML
     public void initialize() {
         if (studentDashboardController != null && studentDashboardController.getStudent() != null) {
             displayCourses(); // Safety check before displaying courses
@@ -33,8 +40,8 @@ public class MyLearningController {
     }
 
     private void displayCourses() {
-        // Logic to display courses from student's enrolled courses
-        // For example, use a ListView or VBox to list the courses
+        coursesListView.getItems().clear();
+        coursesListView.getItems().addAll(studentDashboardController.getStudent().getCourses());
     }
 
     @FXML

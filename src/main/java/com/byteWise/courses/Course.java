@@ -90,6 +90,11 @@ public abstract class Course implements Comparable<Course> , Assessable {
     public void setCourseTag(String courseTag) {
         this.courseTag = courseTag;
     }
+
+    @Override
+    public String toString() {
+        return courseTitle; // Or any other meaningful representation
+    }
     
     public List<Quiz> getQuizzes() {
         return quizzes;

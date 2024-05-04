@@ -70,12 +70,6 @@ public class DiscoverController {
         }
     }
 
-// private void addCourse(String courseId) {
-//     // Logic to add the course to the student's registered courses
-//     System.out.println("Adding course: " + courseId);
-//     // Potentially update a list or database here
-// }
-
 @FXML
 public void handleBackToDashboardAction() throws IOException {
     changeScene("StudentDashboard.fxml");

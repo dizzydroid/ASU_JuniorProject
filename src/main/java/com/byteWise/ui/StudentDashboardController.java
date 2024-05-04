@@ -136,13 +136,6 @@ public class StudentDashboardController {
         infoAlert.showAndWait();
     }
 
-    // private void changeScene(String fxmlFile) throws IOException {
-    //     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-    //     Stage stage = (Stage) userName.getScene().getWindow();
-    //     Scene scene = new Scene(loader.load());
-    //     stage.setScene(scene);
-    // }
-
     private void changeScene(String fxmlFile) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Scene scene = new Scene(loader.load());
@@ -160,8 +153,5 @@ public class StudentDashboardController {
         Stage stage = (Stage) userName.getScene().getWindow();
         stage.setScene(scene);
     }
-
-    // a similar changing scene method but for "My Learning" scene:
-
     
 }

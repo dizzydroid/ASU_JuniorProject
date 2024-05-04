@@ -7,8 +7,10 @@ import src.main.java.com.byteWise.filesystem.Read_Write;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 public class Student extends User {
     private List<Course> courses;
+
     public Student(int id, String name) {
         super(id, name);
         this.courses = new ArrayList<>();
@@ -21,7 +23,7 @@ public class Student extends User {
         System.out.println("Name: " + getName());
         System.out.println("Enrolled Courses:");
         for (Course course : courses) {
-            course.getCourseTitle();
+            System.out.println(course.getCourseTitle());
         }
     }
 
@@ -35,32 +37,12 @@ public class Student extends User {
             showAlert("Success", "Enrolled in course: " + course.getCourseTitle());
         }
     }
-    
 
-//     public void enrollInCourse(Course course) {
-//     if (!courses.contains(course)) {
-//         courses.add(course);
-//         try {
-//             Read_Write.writeToJson(this);  // handles JSON serialization
-//             showAlert("Success", "Enrolled in course: " + course.getCourseTitle());
-//         } catch (Exception e) {
-//             showAlert("Error", "Failed to save course data.");
-//         }
-//     } else {
-//         showAlert("Error", "Already enrolled in course: " + course.getCourseTitle());
-//     }
-// }
+    public List<Course> getCourses() {
+        return new ArrayList<>(courses);
+    }
 
-private void showAlert(String title, String content) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle(title);
-    alert.setHeaderText(null);
-    alert.setContentText(content);
-    alert.showAndWait();
-}
-
-
-    public void dropCourse(Course course) throws CourseNotFoundException{
+    public void dropCourse(Course course) throws CourseNotFoundException {
         if (courses.contains(course)) {
             courses.remove(course);
             Read_Write.writeToJson(this);
@@ -68,6 +50,14 @@ private void showAlert(String title, String content) {
         } else {
             throw new CourseNotFoundException("Can't drop course. Course not found.");
         }
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     public static class CourseNotFoundException extends Exception {
