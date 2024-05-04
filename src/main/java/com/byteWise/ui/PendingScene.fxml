@@ -7,8 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.PendingController">
    <children>
       <ImageView fitHeight="355.0" fitWidth="332.0" layoutX="-12.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,7 +19,7 @@
             <Font name="Comic Sans MS Bold" size="22.0" />
          </font>
       </Text>
-      <Button fx:id="homeBtn" layoutX="509.0" layoutY="-3.0" mnemonicParsing="false" styleClass="student-button" stylesheets="@styles.css">
+      <Button fx:id="backBtn" layoutX="509.0" layoutY="-3.0" mnemonicParsing="false" onAction="#handleBackToDashboardAction" styleClass="student-button" stylesheets="@styles.css">
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                <image>

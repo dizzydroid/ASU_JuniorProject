@@ -52,17 +52,26 @@ public class MyLearningController {
         coursesListView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) { // Detect double-click
                 Course selectedCourse = coursesListView.getSelectionModel().getSelectedItem();
-                System.out.println("Double-click detected on: " + selectedCourse.getCourseTitle()); // Debug output
-                if (selectedCourse != null && "How To: Corn Flakes".equals(selectedCourse.getCourseTitle())) {
+                if (selectedCourse != null) {
+                    System.out.println("Double-click detected on: " + selectedCourse.getCourseTitle()); // Debug output
+    
                     try {
-                        System.out.println("Attempting to change scene to CornFlakes.fxml"); // Debug output
-                        changeScene("CornFlakes.fxml"); // Change to the Corn Flakes course scene
+                        if ("How To: Corn Flakes".equals(selectedCourse.getCourseTitle())) {
+                            System.out.println("Attempting to change scene to CornFlakes.fxml"); // Debug output
+                            changeScene("CornFlakes.fxml"); // Change to the Corn Flakes course scene
+                        } else if ("The Art of Managing Deadlines".equals(selectedCourse.getCourseTitle())) {
+                            System.out.println("Attempting to change scene to ManagingDeadlines.fxml"); // Debug output
+                            changeScene("DeadlineScene.fxml"); // Change to The Art of Managing Deadlines course scene
+                        } else {
+                            System.out.println("Redirecting to PendingScene.fxml for other courses"); // Debug output
+                            changeScene("PendingScene.fxml"); // Default case for other courses
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                         showAlert("Error", "Failed to load the course page.");
                     }
                 } else {
-                    System.out.println("Selected course does not match 'How To: Corn Flakes'"); // Debug output
+                    System.out.println("No course selected"); // Debug output
                 }
             }
         });
@@ -151,6 +160,12 @@ public class MyLearningController {
         } else if (fxmlFile.equals("CornFlakes.fxml")){
             CornController cornController = loader.getController();
             cornController.setStudentDashboardController(studentDashboardController);
+        } else if (fxmlFile.equals("DeadlineScene.fxml")){
+            DeadlineController deadlineController = loader.getController();
+            deadlineController.setStudentDashboardController(studentDashboardController);
+        } else if (fxmlFile.equals("PendingScene.fxml")){
+            PendingController pendingController = loader.getController();
+            pendingController.setStudentDashboardController(studentDashboardController);
         }
         Stage stage = (Stage) backBtn.getScene().getWindow();
         stage.setScene(scene);

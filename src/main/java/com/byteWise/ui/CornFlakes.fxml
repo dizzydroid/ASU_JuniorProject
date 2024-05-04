@@ -19,7 +19,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Text layoutX="519.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="profile">
+      <Text layoutX="521.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="profile">
          <font>
             <Font size="17.0" />
          </font>
@@ -42,7 +42,7 @@
          </font>
       </Text>
       <Text layoutX="29.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Corn Flakes are the lead singers of the glorious orchestra, that is, breakfast. Dive into the details of how corn flakes is prepared in the following guide:" wrappingWidth="429.0042419433594" />
-      <Text layoutX="30.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You can’t get the “flakes” in corn flakes, without milk, so, here’s a video of a cow:" wrappingWidth="429.0042419433594" />
+      <Text layoutX="30.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You can’t get the “flakes” in corn flakes, without milk, so, here’s a video of a cow:" wrappingWidth="534.0042419433594" />
       <Text layoutX="29.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chapter 1: The Milk" wrappingWidth="429.0042419433594">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -59,6 +59,6 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Hyperlink fx:id="vidLink" layoutX="129.0" layoutY="178.0" onAction="#openLink" text="https://www.youtube.com/watch?v=QvDrtGERbCw" />
+      <Hyperlink fx:id="vidLink" layoutX="27.0" layoutY="178.0" onAction="#openLink" text="https://www.youtube.com/watch?v=QvDrtGERbCw" />
    </children>
 </AnchorPane>
