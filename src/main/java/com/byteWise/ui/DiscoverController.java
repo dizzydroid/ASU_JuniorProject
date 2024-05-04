@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import src.main.java.com.byteWise.courses.Course;
 import src.main.java.com.byteWise.courses.TextCourse;
+import src.main.java.com.byteWise.users.Student.CourseNotFoundException;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.util.Optional;
@@ -37,22 +38,37 @@ public class DiscoverController {
 
 
     @FXML
-public void handleAddCourse1Action() {
-    studentDashboardController.getStudent().enrollInCourse(course1);
-    System.out.println("Course 1 added successfully.");
-}
+    public void handleAddCourse1Action() {
+        try {
+            studentDashboardController.getStudent().enrollInCourse(course1);
+        } catch (CourseNotFoundException e) {
+            showAlert("Enrollment Failed", e.getMessage());
+        } catch (IOException e) {
+            showAlert("Error", "Failed to save course data.");
+        }
+    }
 
-@FXML
-public void handleAddCourse2Action() {
-    studentDashboardController.getStudent().enrollInCourse(course2);
-    System.out.println("Course 2 added successfully.");
-}
+    @FXML
+    public void handleAddCourse2Action(){
+        try {
+            studentDashboardController.getStudent().enrollInCourse(course2);
+        } catch (CourseNotFoundException e) {
+            showAlert("Enrollment Failed", e.getMessage());
+        } catch (IOException e) {
+            showAlert("Error", "Failed to save course data.");
+        }
+    }
 
-@FXML
-public void handleAddCourse3Action() {
-    studentDashboardController.getStudent().enrollInCourse(course3);
-    System.out.println("Course 3 added successfully.");
-}
+    @FXML
+    public void handleAddCourse3Action(){
+        try {
+            studentDashboardController.getStudent().enrollInCourse(course3);
+        } catch (CourseNotFoundException e) {
+            showAlert("Enrollment Failed", e.getMessage());
+        } catch (IOException e) {
+            showAlert("Error", "Failed to save course data.");
+        }
+    }
 
 // private void addCourse(String courseId) {
 //     // Logic to add the course to the student's registered courses

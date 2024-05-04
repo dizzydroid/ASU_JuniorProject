@@ -25,19 +25,31 @@ public class Student extends User {
         }
     }
 
-    public void enrollInCourse(Course course) {
-    if (!courses.contains(course)) {
-        courses.add(course);
-        try {
-            Read_Write.writeToJson(this);  // handles JSON serialization
+    public void enrollInCourse(Course course) throws IOException, CourseNotFoundException {
+        if (courses.stream().anyMatch(c -> c.getCourseId().equals(course.getCourseId()))) {
+            // If the course is already enrolled
+            throw new CourseNotFoundException("Already enrolled in course: " + course.getCourseTitle());
+        } else {
+            courses.add(course);
+            Read_Write.writeToJson(this);  // Save changes to JSON
             showAlert("Success", "Enrolled in course: " + course.getCourseTitle());
-        } catch (Exception e) {
-            showAlert("Error", "Failed to save course data.");
         }
-    } else {
-        showAlert("Error", "Already enrolled in course: " + course.getCourseTitle());
     }
-}
+    
+
+//     public void enrollInCourse(Course course) {
+//     if (!courses.contains(course)) {
+//         courses.add(course);
+//         try {
+//             Read_Write.writeToJson(this);  // handles JSON serialization
+//             showAlert("Success", "Enrolled in course: " + course.getCourseTitle());
+//         } catch (Exception e) {
+//             showAlert("Error", "Failed to save course data.");
+//         }
+//     } else {
+//         showAlert("Error", "Already enrolled in course: " + course.getCourseTitle());
+//     }
+// }
 
 private void showAlert(String title, String content) {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -47,19 +59,6 @@ private void showAlert(String title, String content) {
     alert.showAndWait();
 }
 
-
-
-    // public void enrollInCourse(Course course) throws CourseNotFoundException {
-    //     if (!courses.contains(course)) {
-    //         courses.add(course);
-    //         Read_Write.writeToJson(this);
-    //         System.out.println("Enrolled in course: " + course.getCourseTitle());
-    //     } else if (courses.contains(course)){
-    //         throw new CourseNotFoundException("Can't enroll in course. Course already enrolled.");
-    //     } else {
-    //         throw new CourseNotFoundException("Can't enroll in course. Course not found.");
-    //     }
-    // }
 
     public void dropCourse(Course course) throws CourseNotFoundException{
         if (courses.contains(course)) {
