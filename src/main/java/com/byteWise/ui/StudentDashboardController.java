@@ -149,9 +149,19 @@ public class StudentDashboardController {
         if (fxmlFile.equals("DiscoverScene.fxml")) {
             DiscoverController discoverController = loader.getController();
             discoverController.setStudentDashboardController(this);
-        }
+        } else if (fxmlFile.equals("MyLearning.fxml")){
+            MyLearningController myLearningController = loader.getController();
+            myLearningController.setStudentDashboardController(this);
+        
+        } else if (fxmlFile.equals("GiveUpScene.fxml")){
+            GiveUpController giveUpController = loader.getController();
+            giveUpController.setStudentDashboardController(this);
+        } else {}
         Stage stage = (Stage) userName.getScene().getWindow();
         stage.setScene(scene);
     }
+
+    // a similar changing scene method but for "My Learning" scene:
+
     
 }
