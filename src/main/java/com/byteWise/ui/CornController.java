@@ -3,8 +3,13 @@ package src.main.java.com.byteWise.ui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.GridPane;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ButtonBar.ButtonData;
@@ -12,6 +17,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import src.main.java.com.byteWise.courses.Course;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -45,8 +52,101 @@ public class CornController {
     // taking quiz button action
     @FXML
     public void handleQuizAction() {
-        
+        // Create a dialog
+        Dialog<Integer> dialog = new Dialog<>();
+        dialog.setTitle("Corn Flakes Quiz");
+    
+        // Setup buttons
+        ButtonType submitButtonType = new ButtonType("Submit", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(submitButtonType, ButtonType.CANCEL);
+    
+        // Create the quiz content as a GridPane
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+    
+        ToggleGroup group1 = new ToggleGroup();
+        RadioButton q1a = new RadioButton("Hens");
+        RadioButton q1b = new RadioButton("Monkeys");
+        RadioButton q1c = new RadioButton("Cows");
+        RadioButton q1d = new RadioButton("Trees");
+        q1c.setToggleGroup(group1);
+        q1b.setToggleGroup(group1);
+        q1a.setToggleGroup(group1);
+        q1d.setToggleGroup(group1);
+    
+        ToggleGroup group2 = new ToggleGroup();
+        RadioButton q2a = new RadioButton("before, bowl");
+        RadioButton q2b = new RadioButton("after, bowl");
+        RadioButton q2c = new RadioButton("before, floor");
+        RadioButton q2d = new RadioButton("after, floor");
+        q2a.setToggleGroup(group2);
+        q2b.setToggleGroup(group2);
+        q2c.setToggleGroup(group2);
+        q2d.setToggleGroup(group2);
+    
+        ToggleGroup group3 = new ToggleGroup();
+        RadioButton q3a = new RadioButton("dinner");
+        RadioButton q3b = new RadioButton("breakfast");
+        RadioButton q3c = new RadioButton("lunch");
+        RadioButton q3d = new RadioButton("monday");
+        q3b.setToggleGroup(group3);
+        q3a.setToggleGroup(group3);
+        q3c.setToggleGroup(group3);
+        q3d.setToggleGroup(group3);
+    
+        Label question1 = new Label("1. The primary source of milk is (are):");
+        question1.setStyle("-fx-font-weight: bold;");
+        Label question2 = new Label("2. Cereal is placed ....... milk in the .......");
+        question2.setStyle("-fx-font-weight: bold;");
+        Label question3 = new Label("3. Corn Flakes are the lead singers in .......");
+        question3.setStyle("-fx-font-weight: bold;");
+    
+        grid.add(question1, 0, 0);
+        grid.add(q1a, 1, 0);
+        grid.add(q1b, 1, 1);
+        grid.add(q1c, 1, 2);
+        grid.add(q1d, 1, 3);
+    
+        grid.add(question2, 0, 4);
+        grid.add(q2a, 1, 4);
+        grid.add(q2b, 1, 5);
+        grid.add(q2c, 1, 6);
+        grid.add(q2d, 1, 7);
+    
+        grid.add(question3, 0, 8);
+        grid.add(q3a, 1, 8);
+        grid.add(q3b, 1, 9);
+        grid.add(q3c, 1, 10);
+        grid.add(q3d, 1, 11);
+    
+        dialog.getDialogPane().setContent(grid);
+    
+        // Convert the result to a response when the submit button is clicked
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == submitButtonType) {
+                int score = 0;
+                if (q1c.isSelected()) score++;
+                if (q2a.isSelected()) score++;
+                if (q3b.isSelected()) score++;
+                return score;
+            }
+            return null;
+        });
+    
+        Optional<Integer> result = dialog.showAndWait();
+    
+        result.ifPresent(score -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Quiz Result");
+            alert.setHeaderText(null);
+            alert.setContentText("You scored: " + score + "/3");
+            alert.showAndWait();
+        });
     }
+    
+
 
     @FXML
     private void handleBackToDashboardAction() throws IOException {

@@ -38,6 +38,11 @@
     -fx-background-color: #4c74af; /* Vibrant green */
 }
 
+.blue-button:hover{
+    -fx-background-color: #0f2647; /* Darker blue on hover */
+
+}
+
 .student-button {
     -fx-background-color: transparent; /* Makes the button background invisible */
     -fx-border-color: transparent; /* Hides the button border */
