@@ -25,6 +25,7 @@ public class DeadlineController {
 
 
     private StudentDashboardController studentDashboardController;
+    private InstructorDashboardController instructorDashboardController;
 
     public void setStudentDashboardController(StudentDashboardController controller) {
         this.studentDashboardController = controller;
@@ -35,10 +36,24 @@ public class DeadlineController {
         }
     }
 
+    // Setter for instructor controller
+    public void setInstructorDashboardController(InstructorDashboardController controller) {
+        this.instructorDashboardController = controller;
+        if (controller != null && controller.getInstructor() != null) {
+            System.out.println("InstructorDashboardController and instructor are properly set.");
+        } else {
+            System.out.println("InstructorDashboardController or instructor is null!");
+        }
+    }
+
 
     @FXML
     private void handleBackToDashboardAction() throws IOException {
-        changeScene("StudentDashboard.fxml");
+        if (studentDashboardController != null) {
+            changeScene("StudentDashboard.fxml");
+        } else if (instructorDashboardController != null) {
+            changeScene("InstructorDashboard.fxml");
+        }
     }
 
 
@@ -46,12 +61,18 @@ public class DeadlineController {
      private void changeScene(String fxmlFile) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Scene scene = new Scene(loader.load());
-        if (fxmlFile.equals("StudentDashboard.fxml")) {
-            StudentDashboardController studentDashboardController = loader.getController();
-            studentDashboardController.setStudent(this.studentDashboardController.getStudent());
-            studentDashboardController.setUserName(this.studentDashboardController.getStudent().getName());
-        }
         Stage stage = (Stage) backBtn.getScene().getWindow();
+
+        if (fxmlFile.equals("StudentDashboard.fxml") && studentDashboardController != null) {
+            StudentDashboardController controller = loader.getController();
+            controller.setStudent(studentDashboardController.getStudent());
+            controller.setUserName(studentDashboardController.getStudent().getName());
+        } else if (fxmlFile.equals("InstructorDashboard.fxml") && instructorDashboardController != null) {
+            InstructorDashboardController controller = loader.getController();
+            controller.setInstructor(instructorDashboardController.getInstructor());
+            controller.setUserName(instructorDashboardController.getInstructor().getName());
+        }
+
         stage.setScene(scene);
     }
     
@@ -59,32 +80,20 @@ public class DeadlineController {
     // Profile button action that mirrors functionality in DiscoverController
     @FXML
     private void handleProfileAction() {
-    
-        if (studentDashboardController == null || studentDashboardController.getStudent() == null) {
-            showAlert("Error", "No student data available.");
-            return;
-        }
-        if (studentDashboardController == null || studentDashboardController.getStudent() == null) {
-            showAlert("Error", "No student data available.");
-            return;
-        }
-
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Profile Options");
-
         ButtonType usernameButtonType = new ButtonType("View Username", ButtonData.OTHER);
         ButtonType passwordButtonType = new ButtonType("View Password", ButtonData.OTHER);
         ButtonType signOutButtonType = new ButtonType("Sign Out", ButtonData.OTHER);
         ButtonType cancelButtonType = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
-
         dialog.getDialogPane().getButtonTypes().addAll(usernameButtonType, passwordButtonType, signOutButtonType, cancelButtonType);
 
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == usernameButtonType) {
-                return "Username: " + studentDashboardController.getStudent().getName();
+                return "Username: " + (studentDashboardController != null ? studentDashboardController.getStudent().getName() : instructorDashboardController.getInstructor().getName());
             } else if (dialogButton == passwordButtonType) {
                 performSecurityCheck();
-                return null;  // Don't close the dialog on this option
+                return null;
             } else if (dialogButton == signOutButtonType) {
                 try {
                     changeScene("welcome_scene.fxml");

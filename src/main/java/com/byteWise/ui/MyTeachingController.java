@@ -157,16 +157,16 @@ public class MyTeachingController {
             InstructorDashboardController instructorDashboardController = loader.getController();
             instructorDashboardController.setInstructor(this.instructorDashboardController.getInstructor());
             instructorDashboardController.setUserName(this.instructorDashboardController.getInstructor().getName());
-         } // else if (fxmlFile.equals("CornFlakes.fxml")){
-        //     CornController cornController = loader.getController();
-        //     cornController.setInstructorDashboardController(instructorDashboardController);
-        // } else if (fxmlFile.equals("DeadlineScene.fxml")){
-        //     DeadlineController deadlineController = loader.getController();
-        //     deadlineController.setInstructorDashboardController(instructorDashboardController);
-        // } else if (fxmlFile.equals("PendingScene.fxml")){
-        //     PendingController pendingController = loader.getController();
-        //     pendingController.setInstructorDashboardController(instructorDashboardController);
-        // }
+         } else if (fxmlFile.equals("CornFlakes.fxml")){
+            CornController cornController = loader.getController();
+            cornController.setInstructorDashboardController(instructorDashboardController);
+         } else if (fxmlFile.equals("DeadlineScene.fxml")){
+            DeadlineController deadlineController = loader.getController();
+            deadlineController.setInstructorDashboardController(instructorDashboardController);
+         } else if (fxmlFile.equals("PendingScene.fxml")){
+            PendingController pendingController = loader.getController();
+            pendingController.setInstructorDashboardController(instructorDashboardController);
+        }
         Stage stage = (Stage) backBtn.getScene().getWindow();
         stage.setScene(scene);
     }

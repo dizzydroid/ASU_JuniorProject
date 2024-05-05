@@ -17,39 +17,37 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import src.main.java.com.byteWise.courses.Course;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Optional;
 import java.awt.Desktop;
-
+import javafx.geometry.Insets;
 
 public class CornController {
     @FXML
     private Button profileBtn, backBtn, quizBtn;
-     @FXML
+    @FXML
     private Hyperlink vidLink;
 
     private StudentDashboardController studentDashboardController;
+    private InstructorDashboardController instructorDashboardController;
 
+    // Setter for student controller
     public void setStudentDashboardController(StudentDashboardController controller) {
         this.studentDashboardController = controller;
-        if (controller != null && controller.getStudent() != null) {
-            System.out.println("StudentDashboardController and student are properly set.");
-        } else {
-            System.out.println("StudentDashboardController or student is null!");
-        }
     }
-    
+
+    // Setter for instructor controller
+    public void setInstructorDashboardController(InstructorDashboardController controller) {
+        this.instructorDashboardController = controller;
+    }
+
     @FXML
     public void openLink(ActionEvent event) throws URISyntaxException, IOException {
-        System.out.println("Link clicked!");
         Desktop.getDesktop().browse(new URI("https://www.youtube.com/watch?v=QvDrtGERbCw"));
     }
 
-    // taking quiz button action
     @FXML
     public void handleQuizAction() {
         // Create a dialog
@@ -135,6 +133,7 @@ public class CornController {
             return null;
         });
     
+    
         Optional<Integer> result = dialog.showAndWait();
     
         result.ifPresent(score -> {
@@ -145,60 +144,50 @@ public class CornController {
             alert.showAndWait();
         });
     }
-    
-
 
     @FXML
     private void handleBackToDashboardAction() throws IOException {
-        changeScene("StudentDashboard.fxml");
+        if (studentDashboardController != null) {
+            changeScene("StudentDashboard.fxml");
+        } else if (instructorDashboardController != null) {
+            changeScene("InstructorDashboard.fxml");
+        }
     }
 
-
-     // Utility method for changing scenes
-     private void changeScene(String fxmlFile) throws IOException {
+    private void changeScene(String fxmlFile) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Scene scene = new Scene(loader.load());
-        if (fxmlFile.equals("StudentDashboard.fxml")) {
-            StudentDashboardController studentDashboardController = loader.getController();
-            studentDashboardController.setStudent(this.studentDashboardController.getStudent());
-            studentDashboardController.setUserName(this.studentDashboardController.getStudent().getName());
-        }
         Stage stage = (Stage) backBtn.getScene().getWindow();
+
+        if (fxmlFile.equals("StudentDashboard.fxml") && studentDashboardController != null) {
+            StudentDashboardController controller = loader.getController();
+            controller.setStudent(studentDashboardController.getStudent());
+            controller.setUserName(studentDashboardController.getStudent().getName());
+        } else if (fxmlFile.equals("InstructorDashboard.fxml") && instructorDashboardController != null) {
+            InstructorDashboardController controller = loader.getController();
+            controller.setInstructor(instructorDashboardController.getInstructor());
+            controller.setUserName(instructorDashboardController.getInstructor().getName());
+        }
+
         stage.setScene(scene);
     }
-    
 
-    // Profile button action that mirrors functionality in DiscoverController
     @FXML
     private void handleProfileAction() {
-        // System.out.println("Checking controller: " + studentDashboardController);  // Debug statement
-        // System.out.println("Checking student: " + (studentDashboardController != null ? studentDashboardController.getStudent() : "null"));  // Debug statement
-    
-        if (studentDashboardController == null || studentDashboardController.getStudent() == null) {
-            showAlert("Error", "No student data available.");
-            return;
-        }
-        if (studentDashboardController == null || studentDashboardController.getStudent() == null) {
-            showAlert("Error", "No student data available.");
-            return;
-        }
-
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Profile Options");
-
         ButtonType usernameButtonType = new ButtonType("View Username", ButtonData.OTHER);
         ButtonType passwordButtonType = new ButtonType("View Password", ButtonData.OTHER);
         ButtonType signOutButtonType = new ButtonType("Sign Out", ButtonData.OTHER);
         ButtonType cancelButtonType = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
-
         dialog.getDialogPane().getButtonTypes().addAll(usernameButtonType, passwordButtonType, signOutButtonType, cancelButtonType);
 
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == usernameButtonType) {
-                return "Username: " + studentDashboardController.getStudent().getName();
+                return "Username: " + (studentDashboardController != null ? studentDashboardController.getStudent().getName() : instructorDashboardController.getInstructor().getName());
             } else if (dialogButton == passwordButtonType) {
                 performSecurityCheck();
-                return null;  // Don't close the dialog on this option
+                return null;
             } else if (dialogButton == signOutButtonType) {
                 try {
                     changeScene("welcome_scene.fxml");
@@ -238,5 +227,4 @@ public class CornController {
         infoAlert.setContentText(content);
         infoAlert.showAndWait();
     }
-
 }
