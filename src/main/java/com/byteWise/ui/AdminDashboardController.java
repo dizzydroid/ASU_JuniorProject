@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import src.main.java.com.byteWise.users.Admin;
 
 public class AdminDashboardController {
+    private static AdminDashboardController instance;
+
     private Admin admin;
 
     public void setAdmin(Admin admin) {
@@ -33,6 +35,14 @@ public class AdminDashboardController {
     public void setUserName(String name) {
         userName.setText(name);
     }
+
+    public static AdminDashboardController getInstance() {
+        if (instance == null) {
+            instance = new AdminDashboardController();
+        }
+        return instance;
+    }
+    
 
     @FXML
     private void handleManageUsersAction() throws IOException {
@@ -108,7 +118,7 @@ public class AdminDashboardController {
         if (fxmlFile.equals("ManageUsers.fxml")) {
             ManageUsersController manageuser = loader.getController();
             manageuser.setManageUsersController(this);
-         }
+        }
          // else if (fxmlFile.equals("ManageCourses.fxml")){
         //     ManageCoursesController managecourses = loader.getController();
         //     //managecourses.setManageCoursesController(this);

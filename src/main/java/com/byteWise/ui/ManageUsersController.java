@@ -47,13 +47,17 @@ public class ManageUsersController {
     AdminDashboardController adminDashboardController;
     @FXML
     public void initialize(){
-        // System.out.println("hi");
         populateListView();
         updateSelectedUser();
     }
 
     public void setManageUsersController(AdminDashboardController controller){
-        adminDashboardController = controller;
+        this.adminDashboardController = controller;
+        if (controller != null && controller.getAdmin() != null) {
+            System.out.println("admindashboardc and admin are properly set.");
+        } else {
+            System.out.println("admindashboardc or admin is null!");
+        }
     }
 
     public void populateListView(){
