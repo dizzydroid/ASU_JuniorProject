@@ -32,13 +32,13 @@ public class AdminDashboardController {
     }
 
     @FXML
-    private void handleManageUsersAction() {
-        // Code to switch to the Manage Users scene
+    private void handleManageUsersAction() throws IOException {
+        changeScene("ManageUsers.fxml");
     }
 
     @FXML
-    private void handleManageCoursesAction() {
-        // Code to switch to the Manage Courses scene
+    private void handleManageCoursesAction() throws IOException {
+        changeScene("ManageCourses.fxml");
     }
 
     @FXML
