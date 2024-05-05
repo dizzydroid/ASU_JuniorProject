@@ -290,7 +290,22 @@ public final class Read_Write {
             System.out.println("Error writing data to CSV file: " + e.getMessage());
         }
     }
-
+   public static void readUsersFromCSV(List<String> users){
+        //List<String> users = new ArrayList<>();
+        try (Scanner scanner = new Scanner(new File(USERS_CSV_FILEPATH))) {
+            if(scanner.hasNextLine()){
+                scanner.nextLine(); // Skip the header
+            }
+            while (scanner.hasNextLine()) {
+                String[] data = scanner.nextLine().split(",");
+                if(!data[2].equals("2")){
+                users.add(data[0]);
+            }
+        }
+        } catch (IOException e) {
+            e.getStackTrace();
+        }
+    }
     public static class CourseNotFoundException extends Exception {
         public CourseNotFoundException(String message) {
             super(message);

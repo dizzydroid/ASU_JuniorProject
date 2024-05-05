@@ -109,6 +109,11 @@
     -fx-background-color: #680909; /*darker red */
 }
 
+.admin-add-button {
+    -fx-background-color: #09ac50; 
+}
+
+
 .addCourse-button {
     -fx-background-color: #09ac50; /* Green background color */
     -fx-text-fill: white;

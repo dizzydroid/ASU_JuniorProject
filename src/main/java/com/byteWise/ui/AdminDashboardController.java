@@ -20,6 +20,9 @@ public class AdminDashboardController {
     public void setAdmin(Admin admin) {
         this.admin = admin;
     }
+    public Admin getAdmin() {
+        return admin;
+    }
 
     @FXML
     private Text userName;
@@ -101,8 +104,17 @@ public class AdminDashboardController {
 
     private void changeScene(String fxmlFile) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-        Stage stage = (Stage) userName.getScene().getWindow();
         Scene scene = new Scene(loader.load());
+        if (fxmlFile.equals("ManageUsers.fxml")) {
+            ManageUsersController manageuser = loader.getController();
+            manageuser.setManageUsersController(this);
+         }
+         // else if (fxmlFile.equals("ManageCourses.fxml")){
+        //     ManageCoursesController managecourses = loader.getController();
+        //     //managecourses.setManageCoursesController(this);
+        // }
+        Stage stage = (Stage) userName.getScene().getWindow();
         stage.setScene(scene);
     }
 }
+
