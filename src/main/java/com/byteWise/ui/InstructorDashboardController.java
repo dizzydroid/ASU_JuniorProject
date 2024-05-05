@@ -13,15 +13,27 @@ import javafx.scene.control.Dialog;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import src.main.java.com.byteWise.users.Instructor;
-import src.main.java.com.byteWise.users.Student;
 
 public class InstructorDashboardController {
+    
+        private static InstructorDashboardController instance;
+          private Instructor instructor;
+    
+        public void setInstructor(Instructor instructor) {
+            this.instructor = instructor;
+        }
+    
+        public Instructor getInstructor() {
+            return instructor;
+        }
+    
+        public static InstructorDashboardController getInstance() {
+            if (instance == null) {
+                instance = new InstructorDashboardController();
+            }
+            return instance;
+        }
 
-    private Instructor instructor;
-
-    public void setInstructor(Instructor instructor) {
-        this.instructor = instructor;
-    }
 
     @FXML
     private Text userName;
@@ -35,82 +47,96 @@ public class InstructorDashboardController {
     }
 
     @FXML
-    private void handleAddCoursesAction() {
-        // Code to switch to the Add Courses scene
+    private void handleAddCoursesAction() throws IOException {
+        changeScene("AddCourses.fxml");
     }
 
     @FXML
-    private void handleRemoveCoursesAction() {
-        // Code to switch to the Remove Courses scene
+    private void handleRemoveCoursesAction() throws IOException {
+        changeScene("RemoveCourses.fxml");
     }
 
     @FXML
-    private void handleMyTeachingAction() {
-        // Code to switch to the My Teaching scene
+    private void handleMyTeachingAction() throws IOException {
+        changeScene("MyTeaching.fxml");
     }
 
+    
+    
+     // Method for handling the Profile button action
      @FXML
-    private void handleProfileAction() {
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle("Profile Options");
+     private void handleProfileAction() {
 
-        ButtonType usernameButtonType = new ButtonType("View Username", ButtonData.OTHER);
-        ButtonType passwordButtonType = new ButtonType("View Password", ButtonData.OTHER);
-        ButtonType signOutButtonType = new ButtonType("Sign Out", ButtonData.OTHER);
-        ButtonType cancelButtonType = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
-
-        dialog.getDialogPane().getButtonTypes().addAll(usernameButtonType, passwordButtonType, signOutButtonType, cancelButtonType);
-
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == usernameButtonType) {
-                return "Username: " + userName.getText();
-            } else if (dialogButton == passwordButtonType) {
-                performSecurityCheck();
-                return null;  // Don't close the dialog on this option
-            } else if (dialogButton == signOutButtonType) {
-                try {
-                    changeScene("welcome_scene.fxml");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return "Signed out";
-            }
-            return null;
-        });
-
-        dialog.showAndWait().ifPresent(result -> showAlert("Information", result));
-    }
-
-    private void performSecurityCheck() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Security Check");
-        alert.setHeaderText("You must pass the security check to see your password.");
-        alert.setContentText("Are you sure you're not a robot?");
-
-        ButtonType yesButton = new ButtonType("Yes, I'm human!");
-        ButtonType noButton = new ButtonType("Oops, I'm a robot!", ButtonData.CANCEL_CLOSE);
-        alert.getButtonTypes().setAll(yesButton, noButton);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == yesButton) {
-            showAlert("Password Revealed!", "So you forgot your password and thought you're getting away with it? Nice try.");
-        } else {
-            showAlert("Access Denied", "Only humans can see passwords!");
-        }
-    }
-
-    private void showAlert(String title, String content) {
-        Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
-        infoAlert.setTitle(title);
-        infoAlert.setHeaderText(null);
-        infoAlert.setContentText(content);
-        infoAlert.showAndWait();
-    }
-
+         Dialog<String> dialog = new Dialog<>();
+         dialog.setTitle("Profile Options");
+ 
+         ButtonType usernameButtonType = new ButtonType("View Username", ButtonData.OTHER);
+         ButtonType passwordButtonType = new ButtonType("View Password", ButtonData.OTHER);
+         ButtonType signOutButtonType = new ButtonType("Sign Out", ButtonData.OTHER);
+         ButtonType cancelButtonType = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+ 
+         dialog.getDialogPane().getButtonTypes().addAll(usernameButtonType, passwordButtonType, signOutButtonType, cancelButtonType);
+ 
+         dialog.setResultConverter(dialogButton -> {
+             if (dialogButton == usernameButtonType) {
+                 return "Username: " + userName.getText();
+             } else if (dialogButton == passwordButtonType) {
+                 performSecurityCheck();
+                 return null;  // Don't close the dialog on this option
+             } else if (dialogButton == signOutButtonType) {
+                 try {
+                     changeScene("welcome_scene.fxml");
+                 } catch (IOException e) {
+                     e.printStackTrace();
+                 }
+                 return "Signed out";
+             }
+             return null;
+         });
+ 
+         dialog.showAndWait().ifPresent(result -> showAlert("Information", result));
+     }
+ 
+     private void performSecurityCheck() {
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+         alert.setTitle("Security Check");
+         alert.setHeaderText("You must pass the security check to see your password.");
+         alert.setContentText("Are you sure you're not a robot?");
+ 
+         ButtonType yesButton = new ButtonType("Yes, I'm human!");
+         ButtonType noButton = new ButtonType("Oops, I'm a robot!", ButtonData.CANCEL_CLOSE);
+         alert.getButtonTypes().setAll(yesButton, noButton);
+ 
+         Optional<ButtonType> result = alert.showAndWait();
+         if (result.isPresent() && result.get() == yesButton) {
+             showAlert("Password Revealed!", "So you forgot your password and thought you're getting away with it? Nice try.");
+         } else {
+             showAlert("Access Denied", "Only humans can see passwords!");
+         }
+     }
+ 
+     private void showAlert(String title, String content) {
+         Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+         infoAlert.setTitle(title);
+         infoAlert.setHeaderText(null);
+         infoAlert.setContentText(content);
+         infoAlert.showAndWait();
+     }
+ 
      private void changeScene(String fxmlFile) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-        Stage stage = (Stage) userName.getScene().getWindow();
-        Scene scene = new Scene(loader.load());
-        stage.setScene(scene);
-    }
+         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+         Scene scene = new Scene(loader.load());
+         if (fxmlFile.equals("AddCourses.fxml")) {
+             AddCoursesController addCoursesController = loader.getController();
+             addCoursesController.setInstructorDashboardController(this);
+         } else if (fxmlFile.equals("MyTeaching.fxml")){
+             MyTeachingController myTeachingController = loader.getController();
+             myTeachingController.setInstructorDashboardController(this);
+         } else if (fxmlFile.equals("RemoveCourses.fxml")){
+             RemoveCoursesController removeCoursesController = loader.getController();
+             removeCoursesController.setInstructorDashboardController(this);
+         }
+         Stage stage = (Stage) userName.getScene().getWindow();
+         stage.setScene(scene);
+     }
 }

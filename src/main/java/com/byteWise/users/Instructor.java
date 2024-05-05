@@ -45,6 +45,10 @@ public class Instructor extends User {
             System.out.println("Can't remove course. Course not found.");
         }
     }
+
+    public List<Course> getCourses() {
+        return new ArrayList<>(courses);
+    }
     
     public static class CourseNotFoundException extends Exception {
         public CourseNotFoundException(String message) {
