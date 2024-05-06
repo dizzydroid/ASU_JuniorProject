@@ -3,6 +3,7 @@ package src.main.java.com.byteWise.filesystem;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,6 +37,7 @@ public final class Read_Write {
     private static String USERS_CSV_FILEPATH;
     private static String ID_FILE;
     private static String Courses_FILEPATH;
+    private static String COURSEID_FILE;
 
        
     public static String getFILEPATH() {
@@ -46,6 +48,7 @@ public final class Read_Write {
         USERS_CSV_FILEPATH = FILEPATH + SYSTEM_FILEPATH + "Users.csv";
         ID_FILE = FILEPATH + SYSTEM_FILEPATH + "last_id.txt";
         Courses_FILEPATH = FILEPATH + SYSTEM_FILEPATH + "Courses.csv";
+        COURSEID_FILE = FILEPATH + SYSTEM_FILEPATH + "last_course_id.txt";
     }
 
     public static synchronized int generateId() {
@@ -290,6 +293,7 @@ public final class Read_Write {
             System.out.println("Error writing data to CSV file: " + e.getMessage());
         }
     }
+
    public static void readUsersFromCSV(List<String> users){
         //List<String> users = new ArrayList<>();
         try (Scanner scanner = new Scanner(new File(USERS_CSV_FILEPATH))) {
@@ -306,6 +310,34 @@ public final class Read_Write {
             e.getStackTrace();
         }
     }
+
+    public static synchronized int generateCourseID() {
+        int lastId = 3;
+        File file = new File(COURSEID_FILE);
+        if (file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String lastIdStr = reader.readLine();
+                if (lastIdStr != null && !lastIdStr.isEmpty()) {
+                    lastId = Integer.parseInt(lastIdStr.trim());
+                }
+            } catch (IOException | NumberFormatException e) {
+                e.printStackTrace();
+                return -1; // Handle this case in your application
+            }
+        }
+
+        // Increment the last ID and update the file
+        lastId++;
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.write(Integer.toString(lastId));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1; // Handle this case in your application
+        }
+        
+        return lastId;
+    }
+
     public static class CourseNotFoundException extends Exception {
         public CourseNotFoundException(String message) {
             super(message);

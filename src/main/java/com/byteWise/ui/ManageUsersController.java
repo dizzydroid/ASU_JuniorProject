@@ -16,8 +16,10 @@ import javafx.beans.value.ObservableValue;
 import java.util.Scanner;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonBase;
@@ -31,6 +33,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import src.main.java.com.byteWise.filesystem.Read_Write;
 import src.main.java.com.byteWise.users.Admin.UserAlreadyExistsException;
 import src.main.java.com.byteWise.users.Admin.UserNotFoundException;
@@ -44,7 +47,7 @@ public class ManageUsersController {
     private ListView<String> usersListView;
     private List<String> users = new ArrayList<String>();
 
-    AdminDashboardController adminDashboardController;
+    private AdminDashboardController adminDashboardController;
     @FXML
     public void initialize(){
         populateListView();
@@ -60,7 +63,7 @@ public class ManageUsersController {
         }
     }
 
-    public void populateListView(){
+    private void populateListView(){
         usersListView.getItems().clear();
         Read_Write.readUsersFromCSV(users);
         ObservableList<String> elements = FXCollections.observableArrayList(users);
@@ -71,7 +74,7 @@ public class ManageUsersController {
            System.out.println("error here"); //handle later
        } 
     }
-    public void updateSelectedUser(){
+    private void updateSelectedUser(){
         usersListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
                 @Override
                 public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
@@ -84,20 +87,26 @@ public class ManageUsersController {
     }
     
     @FXML
-    public void handleRemoveUserAction(){
+    private void handleRemoveUserAction(){
         String username = usersListView.getSelectionModel().getSelectedItem();
-        try{
-        adminDashboardController.getAdmin().deleteUser(username);
-        usersListView.getItems().remove(username);
+        if(username!=null){
+            try{
+            adminDashboardController.getAdmin().deleteUser(username);
+            usersListView.getItems().remove(username);
+            System.out.println("User Removed Successfully!");
+            showAlert("Success","User Removed Successfully!");
+             }
+            catch(UserNotFoundException e){
+            showAlert("Error","User Not Found");
+            }
+         }
+        else{
+            showAlert("Error","No User Selected!");
         }
-        catch(UserNotFoundException e){
-            e.getStackTrace(); //handle later
-        }
-        
     }
 
     @FXML
-    public void handleAddUserACtion(){
+    private void handleAddUserAction(){
             // Dialog persondialog = new PersonDialog();
             // Optional<Person> result = persondialog. showAndWait();
             Dialog<String> dialog = new Dialog<>(); 
@@ -129,26 +138,29 @@ public class ManageUsersController {
             ButtonType addButton = new ButtonType("Add User",ButtonData.OTHER);
             ButtonType cancelButton = new ButtonType("Cancel",ButtonData.CANCEL_CLOSE);
             dialog.getDialogPane().getButtonTypes().addAll(addButton, cancelButton);
+            dialog.getDialogPane().setContent(grid);
             dialog.setResultConverter(dialogButton -> {
                 if (dialogButton == addButton){
                     if(!(usernameField.getText().isEmpty() || passwordField.getText().isEmpty() || roleField.getText().isEmpty())){
                         int role = Integer.parseInt(roleField.getText());
+                        if (!(role==0 || role==1 || role==2)){
+                            return "Invalid Role";
+                        }
                         try {
                             adminDashboardController.getAdmin().createUser(usernameField.getText(),passwordField.getText(),role);
                             if(role!=2){
                             usersListView.getItems().add(usernameField.getText());
+                            System.out.println("User Added Successfully!"); // --> add alert
+                            return "User Added Successfully!";
                             }
                         } catch (UserAlreadyExistsException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                            
+                            System.out.println("User Already Exists!");
+                            return "User Already Exists!";
                         }
-                        System.out.println("User Added Successfully!"); // --> add alert
-                        return "User Added Successfully!";
                     }
                     else {
                          System.out.println("Please fill all fields");      // -->add alert
-                         return "Please fill all fields";
+                         return "Please Fill All Fields";
                     }
                 }
                 else if (dialogButton == cancelButton){
@@ -157,30 +169,88 @@ public class ManageUsersController {
                 }
                 return null;
             });
-            // ((ButtonBase) dialog.getDialogPane().lookupButton(addButton)).setOnAction(event1 -> {
-            //     // Handle add button click (e.g., process username and password)
-            //     String username = usernameField.getText();
-            //     String password = passwordField.getText();
-            //     // Perform your action here, e.g., save user data to database or file
-            //     System.out.println("Adding user: " + username + " with password: " + password);
-            //     return "hi";
-            // });
-            
-            // Set content and show the dialog
-            dialog.getDialogPane().setContent(grid);
-            dialog.showAndWait();
-        
+            dialog.showAndWait().ifPresent(result -> showAlert("Information", result));
     }
 
     @FXML
-    public void handleBackToDashboardAction(){
-
+    private void handleBackToDashboardAction() throws IOException{
+        changeScene("AdminDashboard.fxml");
     }
 
     @FXML
-    public void handleProfileAction(){
+    private void handleProfileAction() {
+        if (adminDashboardController == null || adminDashboardController.getAdmin() == null) {
+            showAlert("Error", "No Admin data available.");
+            return;
+        }
 
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("Profile Options");
+
+        ButtonType usernameButtonType = new ButtonType("View Username", ButtonData.OTHER);
+        ButtonType passwordButtonType = new ButtonType("View Password", ButtonData.OTHER);
+        ButtonType signOutButtonType = new ButtonType("Sign Out", ButtonData.OTHER);
+        ButtonType cancelButtonType = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+        dialog.getDialogPane().getButtonTypes().addAll(usernameButtonType, passwordButtonType, signOutButtonType, cancelButtonType);
+
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == usernameButtonType) {
+                return "Username: " + adminDashboardController.getAdmin().getName();
+            } else if (dialogButton == passwordButtonType) {
+                performSecurityCheck();
+                return null;  // Don't close the dialog on this option
+            } else if (dialogButton == signOutButtonType) {
+                try {
+                    changeScene("welcome_scene.fxml");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return "Signed out";
+            }
+            return null;
+        });
+
+        dialog.showAndWait().ifPresent(result -> showAlert("Information", result));
     }
-        
+
+    private void performSecurityCheck() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Security Check");
+        alert.setHeaderText("You must pass the security check to see your password.");
+        alert.setContentText("Are you sure you're not a robot?");
+
+        ButtonType yesButton = new ButtonType("Yes, I'm human!");
+        ButtonType noButton = new ButtonType("Oops, I'm a robot!", ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(yesButton, noButton);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == yesButton) {
+            showAlert("Password Revealed!", "So you forgot your password and thought you're getting away with it? Nice try.");
+        } else {
+            showAlert("Access Denied", "Only humans can see passwords!");
+        }
+    }
+
+
+    private void showAlert(String title, String content) {
+        Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+        infoAlert.setTitle(title);
+        infoAlert.setHeaderText(null);
+        infoAlert.setContentText(content);
+        infoAlert.showAndWait();
+    }
+
+    private void changeScene(String fxmlFile) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Scene scene = new Scene(loader.load());
+        if (fxmlFile.equals("AdminDashboard.fxml")) {
+            AdminDashboardController adminDashboardController = loader.getController();
+            adminDashboardController.setAdmin(this.adminDashboardController.getAdmin());
+            adminDashboardController.setUserName(this.adminDashboardController.getAdmin().getName());
+        }
+        Stage stage = (Stage) backBtn.getScene().getWindow();
+        stage.setScene(scene);
+    }     
  
 }

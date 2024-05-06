@@ -1,4 +1,5 @@
 Type,courseId,courseTitle,description,Link
 TextCourse,C1,How To: Corn Flakes,A deep dive into the art of cereal preparation.
-TextCourse, C2,The Art of Managing Deadlines , Learn strategies to manage deadlines effectively.
-TextCourse, C3, Untitled Course ,A course about something that hasn't been decided yet.
+TextCourse,C2,The Art of Managing Deadlines,Learn strategies to manage deadlines effectively.
+TextCourse,C3,Untitled Course,A course about something that hasn't been decided yet.
+VideoCourse,C46,testVideo,this is a test for VideoCourse type,linktest

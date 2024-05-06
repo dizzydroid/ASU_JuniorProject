@@ -118,11 +118,11 @@ public class AdminDashboardController {
         if (fxmlFile.equals("ManageUsers.fxml")) {
             ManageUsersController manageuser = loader.getController();
             manageuser.setManageUsersController(this);
+         }
+         else if (fxmlFile.equals("ManageCourses.fxml")){
+            ManageCoursesController managecourses = loader.getController();
+            managecourses.setManageCoursesController(this);
         }
-         // else if (fxmlFile.equals("ManageCourses.fxml")){
-        //     ManageCoursesController managecourses = loader.getController();
-        //     //managecourses.setManageCoursesController(this);
-        // }
         Stage stage = (Stage) userName.getScene().getWindow();
         stage.setScene(scene);
     }

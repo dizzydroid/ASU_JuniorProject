@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.ManageUsersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.ManageCoursesController">
    <children>
-      <Button fx:id="profileBtn" layoutX="498.0" layoutY="2.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="90.0" styleClass="student-button" stylesheets="@styles.css">
+      <Button fx:id="profileBtn" layoutX="498.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleProfileAction" prefHeight="99.0" prefWidth="90.0" styleClass="student-button" stylesheets="@styles.css">
          <graphic>
             <ImageView fitHeight="73.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" styleClass="student-button">
                <image>
@@ -31,7 +31,7 @@
          </font>
       </Text>
       <ListView fx:id="coursesListView" layoutX="40.0" layoutY="81.0" prefHeight="222.0" prefWidth="452.0" />
-      <Button fx:id="backBtn" layoutX="505.0" layoutY="287.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="82.0" styleClass="student-button" stylesheets="@styles.css">
+      <Button fx:id="backBtn" layoutX="505.0" layoutY="287.0" mnemonicParsing="false" onAction="#handleBackToDashboardAction" prefHeight="61.0" prefWidth="82.0" styleClass="student-button" stylesheets="@styles.css">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -43,27 +43,22 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="removeCourseBtn" layoutX="277.0" layoutY="344.0" mnemonicParsing="false" styleClass="manage-courses-button" stylesheets="@styles.css" text="REMOVE SELECTED COURSE" textFill="WHITE">
+      <Button fx:id="removeCourseBtn" layoutX="277.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleRemoveCourseAction" styleClass="manage-courses-button" stylesheets="@styles.css" text="REMOVE SELECTED COURSE" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <HBox layoutX="304.0" layoutY="317.0" spacing="10.0">
+      <Button fx:id="addCourseBtn" layoutX="46.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleAddCourseAction" prefHeight="31.0" prefWidth="198.0" styleClass="admin-add-button" stylesheets="@styles.css" text="ADD NEW COURSE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <HBox alignment="CENTER" layoutX="251.0" layoutY="303.0" prefHeight="43.0" prefWidth="270.0" spacing="40.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-scale-y: 1.5; -fx-scale-x: 1.5;" text="☠" />
-            <Text fx:id="selectedCourse" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-scale-y: 1.5; -fx-scale-x: 1.5;" text="SelectedCourse" textAlignment="CENTER" wrappingWidth="118.13665771484375" />
+            <Text fx:id="selectedCourse" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-scale-y: 1.5; -fx-scale-x: 1.5;" text="Selected Course" textAlignment="CENTER" wrappingWidth="118.13665771484375" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-scale-y: 1.5; -fx-scale-x: 1.5;" text="☠" />
          </children>
       </HBox>
-      <Button fx:id="addCourseBtn" layoutX="46.0" layoutY="344.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="198.0" styleClass="admin-add-button" stylesheets="@styles.css" text="ADD NEW COURSE" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Text layoutX="127.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="☠" wrappingWidth="18.0">
-         <font>
-            <Font size="48.0" />
-         </font>
-      </Text>
    </children>
 </AnchorPane>

@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.ManageUsersController">
    <children>
-      <Button fx:id="profileBtn" layoutX="498.0" layoutY="2.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="90.0" styleClass="student-button" stylesheets="@styles.css">
+      <Button fx:id="profileBtn" layoutX="498.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleProfileAction" prefHeight="99.0" prefWidth="90.0" styleClass="student-button" stylesheets="@styles.css">
          <graphic>
             <ImageView fitHeight="73.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" styleClass="student-button">
                <image>
@@ -31,7 +31,7 @@
          </font>
       </Text>
       <ListView fx:id="usersListView" layoutX="40.0" layoutY="81.0" prefHeight="222.0" prefWidth="452.0" />
-      <Button fx:id="backBtn" layoutX="505.0" layoutY="287.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="82.0" styleClass="student-button" stylesheets="@styles.css">
+      <Button fx:id="backBtn" layoutX="505.0" layoutY="287.0" mnemonicParsing="false" onAction="#handleBackToDashboardAction" prefHeight="61.0" prefWidth="82.0" styleClass="student-button" stylesheets="@styles.css">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -48,7 +48,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="addUserBtn" layoutX="46.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleAddUserACtion" prefHeight="31.0" prefWidth="198.0" styleClass="admin-add-button" stylesheets="@styles.css" text="ADD NEW USER" textFill="WHITE">
+      <Button fx:id="addUserBtn" layoutX="46.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleAddUserAction" prefHeight="31.0" prefWidth="198.0" styleClass="admin-add-button" stylesheets="@styles.css" text="ADD NEW USER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
