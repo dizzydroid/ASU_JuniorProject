@@ -1,11 +1,5 @@
 package src.main.java.com.byteWise;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import src.main.java.com.byteWise.courses.Course;
-import src.main.java.com.byteWise.courses.TextCourse;
 
 public class Main {
   

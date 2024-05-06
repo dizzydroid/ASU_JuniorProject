@@ -15,7 +15,6 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import src.main.java.com.byteWise.courses.Course;
-import src.main.java.com.byteWise.users.Instructor.CourseNotFoundException;
 
 public class RemoveCoursesController {
     @FXML

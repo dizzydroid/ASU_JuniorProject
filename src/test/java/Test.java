@@ -1,6 +1,5 @@
 package src.test.java;
 
-import java.util.ArrayList;
 
 import src.main.java.com.byteWise.courses.Course;
 import src.main.java.com.byteWise.courses.TextCourse;

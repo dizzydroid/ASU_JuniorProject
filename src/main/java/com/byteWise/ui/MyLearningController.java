@@ -13,7 +13,6 @@ import src.main.java.com.byteWise.courses.Course;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.util.Optional;
-import javafx.scene.input.MouseEvent;
 
 
 public class MyLearningController {

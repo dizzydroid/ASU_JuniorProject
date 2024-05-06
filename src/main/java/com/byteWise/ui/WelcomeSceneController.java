@@ -5,19 +5,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.stage.Stage;
-import src.main.java.com.byteWise.filesystem.Read_Write;
 
 public class WelcomeSceneController {
 
-    @FXML
-    private Button signUpButton;
+    @FXML private Button signUpButton;
 
-    @FXML
-    private Button signInButton;
+    @FXML private Button signInButton;
 
-    // ... (other @FXML annotated UI elements)
+    @FXML private Hyperlink hyperLink;
 
     @FXML
     public void initialize() {
@@ -46,5 +45,18 @@ public class WelcomeSceneController {
         // Get the current stage and switch scenes
         Stage window = (Stage) signInButton.getScene().getWindow();
         window.setScene(signInScene);
+    }
+
+    @FXML
+    private void handleHyperLinkClick() {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Skill Issue");
+    alert.setHeaderText(null);
+    alert.setContentText("skill issue");
+    alert.showAndWait();
+
+    // Close the program
+    Stage stage = (Stage) hyperLink.getScene().getWindow();
+    stage.close();
     }
 }

@@ -8,28 +8,21 @@ import javafx.collections.ObservableList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
-import java.util.Scanner;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonBase;
 import javafx.scene.control.Dialog;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;

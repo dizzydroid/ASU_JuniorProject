@@ -1,22 +1,16 @@
 package src.main.java.com.byteWise.ui;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import src.main.java.com.byteWise.courses.Course;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Optional;
-import java.awt.Desktop;
 
 
 public class DeadlineController {

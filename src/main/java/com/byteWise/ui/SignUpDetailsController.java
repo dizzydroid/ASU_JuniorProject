@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -13,7 +14,6 @@ import src.main.java.com.byteWise.users.Instructor;
 import src.main.java.com.byteWise.users.Student;
 import src.main.java.com.byteWise.filesystem.Read_Write;
 import src.main.java.com.byteWise.filesystem.Read_Write.UserAlreadyExistsException;
-import src.main.java.com.byteWise.filesystem.Read_Write.UserNotFoundException;
 import src.main.java.com.byteWise.users.User;
 
 public class SignUpDetailsController {
@@ -24,11 +24,23 @@ public class SignUpDetailsController {
     private PasswordField passwordField;
     @FXML
     private Text feedbackText;
+    @FXML
+    private Hyperlink hyperLink; 
 
     private String userType;
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    @FXML
+    public void linkClick() {
+        try {
+            redirectToSignIn();
+        } catch (IOException iex) {
+            feedbackText.setText("An error occurred: " + iex.getMessage());
+            iex.printStackTrace();
+        }
     }
 
     @FXML

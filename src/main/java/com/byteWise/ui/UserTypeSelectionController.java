@@ -12,7 +12,7 @@ public class UserTypeSelectionController {
     
     @FXML
     private Button studentButton;
-    private Button instructorButton;
+  //  private Button instructorButton;
 
     @FXML
     private void handleStudentButtonAction() throws IOException {

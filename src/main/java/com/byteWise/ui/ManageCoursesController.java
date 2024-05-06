@@ -20,7 +20,6 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -30,10 +29,7 @@ import src.main.java.com.byteWise.courses.Course;
 import src.main.java.com.byteWise.courses.TextCourse;
 import src.main.java.com.byteWise.courses.VideoCourse;
 import src.main.java.com.byteWise.filesystem.Read_Write;
-import src.main.java.com.byteWise.users.Admin;
 import src.main.java.com.byteWise.users.Admin.CourseAlreadyExists;
-import src.main.java.com.byteWise.users.Admin.UserAlreadyExistsException;
-import src.main.java.com.byteWise.users.Admin.UserNotFoundException;
 
 public class ManageCoursesController {
     @FXML

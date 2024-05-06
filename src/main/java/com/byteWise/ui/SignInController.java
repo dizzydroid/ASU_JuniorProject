@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -13,15 +14,28 @@ import src.main.java.com.byteWise.users.Admin;
 import src.main.java.com.byteWise.users.Instructor;
 import src.main.java.com.byteWise.users.Student;
 import src.main.java.com.byteWise.filesystem.Read_Write;
-import src.main.java.com.byteWise.filesystem.Read_Write.UserAlreadyExistsException;
 import src.main.java.com.byteWise.filesystem.Read_Write.UserNotFoundException;
-import src.main.java.com.byteWise.users.User;
 
 public class SignInController {
 
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private Text feedbackText;
+    @FXML private Hyperlink hyperLink;
+
+    @FXML
+    public void redirectToUserSelection() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("UserTypeSelection.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) hyperLink.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            feedbackText.setText("Error loading the user selection: " + e.getMessage());
+        }
+    }
 
    @FXML
    private void handleSignInAction() {
@@ -74,4 +88,5 @@ public class SignInController {
         feedbackText.setText("Error loading the dashboard: " + e.getMessage());
     }
   }
+
 }
