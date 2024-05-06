@@ -61,9 +61,13 @@ public class MyLearningController {
                         } else if ("The Art of Managing Deadlines".equals(selectedCourse.getCourseTitle())) {
                             System.out.println("Attempting to change scene to ManagingDeadlines.fxml"); // Debug output
                             changeScene("DeadlineScene.fxml"); // Change to The Art of Managing Deadlines course scene
-                        } else {
-                            System.out.println("Redirecting to PendingScene.fxml for other courses"); // Debug output
-                            changeScene("PendingScene.fxml"); // Default case for other courses
+                        } else if ("Untitled Course".equals(selectedCourse.getCourseTitle())) {
+                            System.out.println("Redirecting to PendingScene.fxml for Untitled Course"); // Debug output
+                            changeScene("PendingScene.fxml"); // Default case for Untitled Course
+                        } 
+                        else {
+                            System.out.println("Redirecting to PendingScene2.fxml for other courses"); // Debug output
+                            changeScene("PendingScene2.fxml"); // Default case for other courses
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -162,7 +166,7 @@ public class MyLearningController {
         } else if (fxmlFile.equals("DeadlineScene.fxml")){
             DeadlineController deadlineController = loader.getController();
             deadlineController.setStudentDashboardController(studentDashboardController);
-        } else if (fxmlFile.equals("PendingScene.fxml")){
+        } else if ((fxmlFile.equals("PendingScene.fxml")) || (fxmlFile.equals("PendingScene2.fxml"))){
             PendingController pendingController = loader.getController();
             pendingController.setStudentDashboardController(studentDashboardController);
         }
