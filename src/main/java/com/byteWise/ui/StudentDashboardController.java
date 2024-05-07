@@ -40,6 +40,10 @@ public class StudentDashboardController {
     @FXML
     private Button myLearningBtn, discoverBtn, giveUpBtn, profileBtn;
 
+    @FXML
+    public void initialize(){
+        Adjustments.adjustUserFontSize(userName);
+    }
     
     // Method to set the user's name on the dashboard
     public void setUserName(String name) {

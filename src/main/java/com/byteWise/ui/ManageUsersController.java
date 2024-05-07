@@ -142,10 +142,9 @@ public class ManageUsersController {
                         try {
                             adminDashboardController.getAdmin().createUser(usernameField.getText(),passwordField.getText(),role);
                             if(role!=2){
-                            usersListView.getItems().add(usernameField.getText());
+                            usersListView.getItems().add(usernameField.getText());}
                             System.out.println("User Added Successfully!"); // --> add alert
                             return "User Added Successfully!";
-                            }
                         } catch (UserAlreadyExistsException e) {
                             System.out.println("User Already Exists!");
                             return "User Already Exists!";

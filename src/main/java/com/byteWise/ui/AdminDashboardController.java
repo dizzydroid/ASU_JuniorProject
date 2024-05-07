@@ -32,6 +32,11 @@ public class AdminDashboardController {
     @FXML
     private Button manageUsersBtn, manageCoursesBtn, profileBtn;
 
+    @FXML
+    public void initialize(){
+        Adjustments.adjustUserFontSize(userName);
+    }
+
     public void setUserName(String name) {
         userName.setText(name);
     }

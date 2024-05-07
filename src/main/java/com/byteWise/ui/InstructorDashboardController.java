@@ -41,6 +41,10 @@ public class InstructorDashboardController {
     @FXML
     private Button addCoursesBtn, removeCoursesBtn, myTeachingBtn, profileBtn;
 
+    @FXML
+    public void initialize(){
+        Adjustments.adjustUserFontSize(userName);
+    }
 
     public void setUserName(String name) {
         userName.setText(name);
