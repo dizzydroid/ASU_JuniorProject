@@ -16,10 +16,10 @@
       </Text>
       <Text fx:id="userName" fill="#616161" layoutX="254.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
-            <Font name="System Bold" size="38.0" />
+            <Font name="Arial Bold" size="38.0" />
          </font>
       </Text>
-      <Button fx:id="myTeachingBtn" layoutX="51.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleMyTeachingAction" prefHeight="191.0" prefWidth="198.0" styleClass="my-learning-button" stylesheets="@styles.css" text="MY &#10;TEACHING" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="myTeachingBtn" layoutX="51.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleMyTeachingAction" prefHeight="169.0" prefWidth="198.0" styleClass="my-learning-button" stylesheets="@styles.css" text="MY &#10;TEACHING" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -29,7 +29,7 @@
             <Font name="System Bold" size="28.0" />
          </font>
       </Button>
-      <Button fx:id="removeCoursesBtn" layoutX="288.0" layoutY="248.0" mnemonicParsing="false" onAction="#handleRemoveCoursesAction" prefHeight="83.0" prefWidth="245.0" styleClass="give-up-button" stylesheets="@styles.css" text="Remove Course(s)" textFill="#ba3026">
+      <Button fx:id="removeCoursesBtn" layoutX="288.0" layoutY="228.0" mnemonicParsing="false" onAction="#handleRemoveCoursesAction" prefHeight="83.0" prefWidth="245.0" styleClass="give-up-button" stylesheets="@styles.css" text="Remove Course(s)" textFill="#ba3026">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
@@ -48,5 +48,14 @@
             <Font size="17.0" />
          </font>
       </Text>
+      <Button fx:id="quizBuilder" layoutX="197.0" layoutY="311.0" mnemonicParsing="false" onAction="#handleQuizBuilderAction" prefWidth="192.0" styleClass="student-button" stylesheets="@styles.css">
+         <graphic>
+            <ImageView fitHeight="64.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../assets/GUI%20assets/QBicon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

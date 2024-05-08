@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Question {
+
     private String questionText;
     private List<String> options;
     private String correctAnswer;
@@ -13,6 +14,18 @@ public class Question {
         this.options = options;
         this.correctAnswer = correctAnswer;
 
+    }
+
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
+    }
+
+    public void setOptions(List<String> options) {
+        this.options = options;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
     public String getQuestionText() {

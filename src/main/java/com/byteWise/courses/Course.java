@@ -1,5 +1,6 @@
 package src.main.java.com.byteWise.courses;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,12 +24,17 @@ public abstract class Course implements Comparable<Course> , Assessable {
         this.courseTitle = courseTitle;
         this.description = description;
         this.courseTag = courseTag;
+        this.quizzes = new ArrayList<>();
+    }
+
+    public void addQuiz(Quiz quiz) {
+        quizzes.add(quiz);
     }
 
 
     @Override
     public Quiz conductAssessment()  {
-
+        
         
         return quizzes.remove(0);
     }

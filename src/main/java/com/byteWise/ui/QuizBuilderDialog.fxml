@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<DialogPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.QuizBuilderController">
+    <content>
+        <VBox spacing="10">
+            <TextField fx:id="quizTitleField" promptText="Enter Quiz Title"/>
+            <Button text="Add Question" onAction="#handleAddQuestion"/>
+            <ListView fx:id="questionsListView" prefHeight="200.0"/>
+            <ComboBox fx:id="courseComboBox" prefWidth="200"/>
+            <HBox spacing="10">
+                <Button text="Save Quiz" onAction="#handleSaveQuiz"/>
+                <Button text="Cancel" onAction="#handleCancel"/>
+            </HBox>
+        </VBox>
+    </content>
+</DialogPane>

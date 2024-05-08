@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import src.main.java.com.byteWise.users.Instructor;
@@ -39,7 +40,7 @@ public class InstructorDashboardController {
     private Text userName;
 
     @FXML
-    private Button addCoursesBtn, removeCoursesBtn, myTeachingBtn, profileBtn;
+    private Button addCoursesBtn, removeCoursesBtn, myTeachingBtn, profileBtn, quizBuilder;
 
     @FXML
     public void initialize(){
@@ -65,8 +66,21 @@ public class InstructorDashboardController {
         changeScene("MyTeaching.fxml");
     }
 
-    
-    
+    @FXML
+    private void handleQuizBuilderAction() {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("QuizBuilderDialog.fxml"));
+        DialogPane dialogPane = loader.load();
+        QuizBuilderController controller = loader.getController();
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setDialogPane(dialogPane);
+        controller.setupDialog(dialog);
+        dialog.showAndWait();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
      // Method for handling the Profile button action
      @FXML
      private void handleProfileAction() {

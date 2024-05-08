@@ -16,7 +16,7 @@
       </Text>
       <Text fx:id="userName" fill="#616161" layoutX="254.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
-            <Font name="System Bold" size="38.0" />
+            <Font name="Arial Bold" size="38.0" />
          </font>
       </Text>
       <Button fx:id="myLearningBtn" layoutX="197.0" layoutY="145.0" mnemonicParsing="false" onAction="#handleMyLearningAction" prefHeight="66.0" prefWidth="206.0" styleClass="my-learning-button" stylesheets="@styles.css" text="MY LEARNING" textFill="WHITE">
