@@ -156,5 +156,11 @@ private void handleSaveQuiz() {
     public void setupDialog(Dialog<ButtonType> dialog) {
         this.dialog = dialog;
         this.dialog.setTitle("ByteWise Quiz Builder");
+        Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+        stage.setOnCloseRequest(event -> {
+            closeDialog();
+        });
     }
+
+    
 }
