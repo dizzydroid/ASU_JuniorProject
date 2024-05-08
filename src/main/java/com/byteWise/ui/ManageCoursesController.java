@@ -186,6 +186,17 @@ public class ManageCoursesController {
     }
 
     @FXML
+    private void handleSortAction(){
+        courses = Read_Write.ReadFromCoursesFile();
+        Course[] courseArr = courses.toArray(new Course[courses.size()]);
+        Arrays.sort(courseArr);
+        coursesListView.getItems().clear();
+        ObservableList<Course> sortedcourses = FXCollections.observableArrayList(courseArr);
+        coursesListView.setItems(sortedcourses); 
+        System.out.println("Sorted!");
+    }
+
+    @FXML
     private void handleBackToDashboardAction() throws IOException{
         changeScene("AdminDashboard.fxml");
     }

@@ -1,5 +1,5 @@
 package src.main.java.com.byteWise.users;
-public abstract class User {
+public abstract class User implements Comparable<User>{
     private int id;
     private String name;
     public static int userCount = 0;
@@ -26,6 +26,11 @@ public abstract class User {
     // Setters
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return this.getName().compareToIgnoreCase(o.getName());
     }
 
 }

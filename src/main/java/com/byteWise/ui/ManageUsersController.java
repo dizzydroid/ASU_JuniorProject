@@ -2,12 +2,16 @@ package src.main.java.com.byteWise.ui;
 
 import javafx.collections.FXCollections;
 import java.io.IOException;
+import java.text.Collator;
 
 import javafx.collections.ObservableList;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -27,9 +31,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import src.main.java.com.byteWise.courses.Course;
 import src.main.java.com.byteWise.filesystem.Read_Write;
 import src.main.java.com.byteWise.users.Admin.UserAlreadyExistsException;
 import src.main.java.com.byteWise.users.Admin.UserNotFoundException;
+import src.main.java.com.byteWise.users.User;
 
 public class ManageUsersController {
    @FXML
@@ -162,6 +168,24 @@ public class ManageUsersController {
                 return null;
             });
             dialog.showAndWait().ifPresent(result -> showAlert("Information", result));
+    }
+
+    @FXML
+    private void handleSortAction(){
+        users.clear();
+        Read_Write.readUsersFromCSV(users);
+        String[] usersArr = users.toArray(new String[users.size()]);
+        Arrays.sort(usersArr, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareToIgnoreCase(s2);
+            }
+        });
+        ;
+        usersListView.getItems().clear();
+        ObservableList<String> sortedusers = FXCollections.observableArrayList(usersArr);
+        usersListView.setItems(sortedusers); 
+        System.out.println("Sorted!");
     }
 
     @FXML

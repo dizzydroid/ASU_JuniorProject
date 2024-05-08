@@ -60,5 +60,10 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-scale-y: 1.5; -fx-scale-x: 1.5;" text="☠" />
          </children>
       </HBox>
+      <Button fx:id="sortbtn" layoutX="513.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleSortAction" prefHeight="31.0" prefWidth="66.0" styleClass="admin-add-button" stylesheets="@styles.css" text="SORT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

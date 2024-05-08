@@ -1,5 +1,7 @@
 package src.main.java.com.byteWise.ui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
@@ -12,6 +14,8 @@ import javafx.stage.Stage;
 import src.main.java.com.byteWise.courses.Course;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -80,7 +84,16 @@ public class MyLearningController {
         });
     }
     
-
+    @FXML
+    private void handleSortAction(){
+        List<Course> courses = studentDashboardController.getStudent().getCourses();
+        Course[] courseArr = courses.toArray(new Course[courses.size()]);
+        Arrays.sort(courseArr);
+        coursesListView.getItems().clear();
+        ObservableList<Course> sortedcourses = FXCollections.observableArrayList(courseArr);
+        coursesListView.setItems(sortedcourses); 
+        System.out.println("Sorted!");
+    }
 
     @FXML
     private void handleBackToDashboardAction() throws IOException {
