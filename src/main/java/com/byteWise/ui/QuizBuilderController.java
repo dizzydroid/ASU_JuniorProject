@@ -3,6 +3,8 @@ package src.main.java.com.byteWise.ui;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
@@ -101,7 +103,7 @@ public class QuizBuilderController {
     });
 
     Optional<Question> result = questionDialog.showAndWait();
-    result.ifPresent(question -> questionsListView.getItems().add(question)); // Assuming 'questionsListView' is your ListView
+    result.ifPresent(question -> questionsListView.getItems().add(question)); 
 }
 
 
@@ -154,13 +156,24 @@ private void handleSaveQuiz() {
 
     // Ensure dialog setup is done outside of FXML annotations to properly manage dialog properties
     public void setupDialog(Dialog<ButtonType> dialog) {
-        this.dialog = dialog;
-        this.dialog.setTitle("ByteWise Quiz Builder");
-        Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
-        stage.setOnCloseRequest(event -> {
-            closeDialog();
-        });
-    }
+    this.dialog = dialog;
+    this.dialog.setTitle("ByteWise Quiz Builder");
+
+    // Set the image inside the dialog
+    ImageView imageView = new ImageView("file:///"+Read_Write.getFILEPATH()+"\\assets\\GUI Assets\\QBicon.png");
+    imageView.setFitWidth(500); // Set the width of the image
+    imageView.setFitHeight(300); // Set the height of the image
+    dialog.setGraphic(imageView);
+
+    // Set the image in the title bar
+    Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+    stage.getIcons().add(new Image("file:///"+Read_Write.getFILEPATH()+"\\assets\\GUI Assets\\QBicon.png"));
+
+    stage.setOnCloseRequest(event -> {
+        closeDialog();
+    });
+
+}
 
     
 }
