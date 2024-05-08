@@ -47,7 +47,7 @@ public class StudentDashboardController {
     
     // Method to set the user's name on the dashboard
     public void setUserName(String name) {
-        userName.setText(name);
+        userName.setText(name + "!");
         setUserNameInUserData(); // Add this line to set the username in UserData singleton
     }
 

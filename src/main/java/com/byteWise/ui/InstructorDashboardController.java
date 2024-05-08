@@ -48,7 +48,7 @@ public class InstructorDashboardController {
     }
 
     public void setUserName(String name) {
-        userName.setText(name);
+        userName.setText(name + "!");
     }
 
     @FXML

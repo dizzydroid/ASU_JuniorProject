@@ -38,7 +38,7 @@ public class AdminDashboardController {
     }
 
     public void setUserName(String name) {
-        userName.setText(name);
+        userName.setText(name + "!");
     }
 
     public static AdminDashboardController getInstance() {
