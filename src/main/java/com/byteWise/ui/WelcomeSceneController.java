@@ -1,5 +1,7 @@
 package src.main.java.com.byteWise.ui;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.stage.Stage;
+import src.main.java.com.byteWise.courses.Course;
+import src.main.java.com.byteWise.courses.TextCourse;
 
 public class WelcomeSceneController {
 

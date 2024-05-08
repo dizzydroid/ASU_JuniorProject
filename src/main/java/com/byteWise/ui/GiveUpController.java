@@ -1,9 +1,12 @@
 package src.main.java.com.byteWise.ui;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -70,6 +73,17 @@ public class GiveUpController {
         } else {
             showAlert("Error", "No course selected!");
         }
+    }
+
+    @FXML
+    private void handleSortAction(){
+        List<Course> courses = studentDashboardController.getStudent().getCourses();
+        Course[] courseArr = courses.toArray(new Course[courses.size()]);
+        Arrays.sort(courseArr);
+        coursesListView.getItems().clear();
+        ObservableList<Course> sortedcourses = FXCollections.observableArrayList(courseArr);
+        coursesListView.setItems(sortedcourses); 
+        System.out.println("Sorted!");
     }
     
     @FXML

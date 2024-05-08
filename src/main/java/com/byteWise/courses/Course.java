@@ -53,7 +53,7 @@ public abstract class Course implements Comparable<Course> , Assessable {
         
     @Override
     public int compareTo(Course o) {
-        return this.getCourseTitle().compareTo(o.getCourseTitle());
+        return this.getCourseTitle().compareToIgnoreCase(o.getCourseTitle());
     }
 
 
