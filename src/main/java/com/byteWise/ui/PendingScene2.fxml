@@ -4,29 +4,35 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.PendingController">
+
+<StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.PendingController">
    <children>
-      <ImageView fitHeight="355.0" fitWidth="332.0" layoutX="259.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../assets/GUI%20assets/beaver.png" />
-         </image>
-      </ImageView>
-      <Text fill="#3f864e" layoutX="26.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We're still working on that page,&#10;come back later!" textAlignment="CENTER" wrappingWidth="273.9713439941406">
-         <font>
-            <Font name="Comic Sans MS Bold" size="22.0" />
-         </font>
-      </Text>
-      <Button fx:id="backBtn" layoutX="509.0" layoutY="-3.0" mnemonicParsing="false" onAction="#handleBackToDashboardAction" styleClass="student-button" stylesheets="@styles.css">
-         <graphic>
-            <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="355.0" fitWidth="332.0" layoutX="259.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../assets/GUI%20assets/home.png" />
+                  <Image url="@../../../../../../assets/GUI%20assets/beaver.png" />
                </image>
             </ImageView>
-         </graphic>
-      </Button>
+            <Text fill="#3f864e" layoutX="26.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We're still working on that page,&#10;come back later!" textAlignment="CENTER" wrappingWidth="273.9713439941406">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="22.0" />
+               </font>
+            </Text>
+            <Button fx:id="backBtn" layoutX="509.0" layoutY="-3.0" mnemonicParsing="false" onAction="#handleBackToDashboardAction" styleClass="student-button" stylesheets="@styles.css">
+               <graphic>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../assets/GUI%20assets/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

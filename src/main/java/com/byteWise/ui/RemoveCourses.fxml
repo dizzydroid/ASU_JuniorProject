@@ -5,57 +5,63 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.RemoveCoursesController">
+
+<StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.RemoveCoursesController">
    <children>
-      <Button fx:id="profileBtn" layoutX="498.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleProfileAction" prefHeight="99.0" prefWidth="90.0" styleClass="student-button" stylesheets="@styles.css">
-         <graphic>
-            <ImageView fx:id="studentIMG" fitHeight="73.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" styleClass="student-button">
-               <image>
-                  <Image url="@../../../../../../assets/GUI%20assets/profileIcon.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Text layoutX="521.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="profile">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Button fx:id="backBtn" layoutX="505.0" layoutY="287.0" mnemonicParsing="false" onAction="#handleBackToDashboardAction" prefHeight="61.0" prefWidth="82.0" styleClass="student-button" stylesheets="@styles.css">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-         <graphic>
-            <ImageView fx:id="homeImg" fitHeight="60.0" fitWidth="60.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" styleClass="student-button">
-               <image>
-                  <Image url="@../../../../../../assets/GUI%20assets/home.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Text fill="#09ac50" layoutX="39.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PICK COURSES TO REMOVE">
-         <font>
-            <Font name="System Bold" size="32.0" />
-         </font>
-      </Text>
-      <ListView fx:id="coursesListView" layoutX="40.0" layoutY="111.0" prefHeight="222.0" prefWidth="452.0" />
-      <Text fill="#09ac50" layoutX="39.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="don't give up on your students though..">
-         <font>
-            <Font size="23.0" />
-         </font>
-      </Text>
-      <Button fx:id="removeBtn" layoutX="40.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleRemoveCourseAction" styleClass="manage-courses-button" stylesheets="@styles.css" text="REMOVE SELECTED COURSE" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="sortbtn" layoutX="513.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleSortAction" prefHeight="31.0" prefWidth="66.0" styleClass="admin-add-button" stylesheets="@styles.css" text="SORT" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="profileBtn" layoutX="498.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleProfileAction" prefHeight="99.0" prefWidth="90.0" styleClass="student-button" stylesheets="@styles.css">
+               <graphic>
+                  <ImageView fx:id="studentIMG" fitHeight="73.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" styleClass="student-button">
+                     <image>
+                        <Image url="@../../../../../../assets/GUI%20assets/profileIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Text layoutX="521.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="profile">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <Button fx:id="backBtn" layoutX="505.0" layoutY="287.0" mnemonicParsing="false" onAction="#handleBackToDashboardAction" prefHeight="61.0" prefWidth="82.0" styleClass="student-button" stylesheets="@styles.css">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fx:id="homeImg" fitHeight="60.0" fitWidth="60.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" styleClass="student-button">
+                     <image>
+                        <Image url="@../../../../../../assets/GUI%20assets/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Text fill="#09ac50" layoutX="39.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PICK COURSES TO REMOVE">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Text>
+            <ListView fx:id="coursesListView" layoutX="40.0" layoutY="111.0" prefHeight="222.0" prefWidth="452.0" />
+            <Text fill="#09ac50" layoutX="39.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="don't give up on your students though..">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+            <Button fx:id="removeBtn" layoutX="40.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleRemoveCourseAction" styleClass="manage-courses-button" stylesheets="@styles.css" text="REMOVE SELECTED COURSE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="sortbtn" layoutX="513.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleSortAction" prefHeight="31.0" prefWidth="66.0" styleClass="admin-add-button" stylesheets="@styles.css" text="SORT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

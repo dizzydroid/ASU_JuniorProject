@@ -4,77 +4,83 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.DiscoverController">
+
+<StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.DiscoverController">
    <children>
-      <Button fx:id="profileBtn" layoutX="498.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleProfileAction" prefHeight="99.0" prefWidth="90.0" styleClass="student-button" stylesheets="@styles.css">
-         <graphic>
-            <ImageView fx:id="studentIMG" fitHeight="73.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" styleClass="student-button">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="profileBtn" layoutX="498.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleProfileAction" prefHeight="99.0" prefWidth="90.0" styleClass="student-button" stylesheets="@styles.css">
+               <graphic>
+                  <ImageView fx:id="studentIMG" fitHeight="73.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" styleClass="student-button">
+                     <image>
+                        <Image url="@../../../../../../assets/GUI%20assets/profileIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Text layoutX="521.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="profile">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#09ac50" layoutX="115.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COURSE CATALOGUE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="course1" fitHeight="150.0" fitWidth="200.0" layoutX="60.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../assets/GUI%20assets/profileIcon.png" />
+                  <Image url="@../../../../../../assets/GUI%20assets/course1.png" />
                </image>
             </ImageView>
-         </graphic>
-      </Button>
-      <Text layoutX="521.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="profile">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text fill="#09ac50" layoutX="115.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COURSE CATALOGUE">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Text>
-      <ImageView fx:id="course1" fitHeight="150.0" fitWidth="200.0" layoutX="60.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../assets/GUI%20assets/course1.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="course3" fitHeight="150.0" fitWidth="200.0" layoutX="403.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../assets/GUI%20assets/course3.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="course2" fitHeight="150.0" fitWidth="200.0" layoutX="230.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../assets/GUI%20assets/course2.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="addBtn1" defaultButton="true" layoutX="98.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleAddCourse1Action" prefHeight="22.0" prefWidth="72.0" styleClass="addCourse-button" stylesheets="@styles.css" text="+ ADD">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="addBtn2" defaultButton="true" layoutX="265.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleAddCourse2Action" prefHeight="22.0" prefWidth="72.0" styleClass="addCourse-button" stylesheets="@styles.css" text="+ ADD">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="addBtn3" defaultButton="true" layoutX="441.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleAddCourse3Action" prefHeight="22.0" prefWidth="72.0" styleClass="addCourse-button" stylesheets="@styles.css" text="+ ADD">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="backBtn" layoutX="14.0" layoutY="-6.0" mnemonicParsing="false" onAction="#handleBackToDashboardAction" prefHeight="61.0" prefWidth="82.0" styleClass="student-button" stylesheets="@styles.css">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-         <graphic>
-            <ImageView fx:id="homeImg" fitHeight="60.0" fitWidth="60.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" styleClass="student-button">
+            <ImageView fx:id="course3" fitHeight="150.0" fitWidth="200.0" layoutX="403.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../assets/GUI%20assets/home.png" />
+                  <Image url="@../../../../../../assets/GUI%20assets/course3.png" />
                </image>
             </ImageView>
-         </graphic>
-      </Button>
-      <Text fx:id="debug" layoutX="46.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Button fx:id="allCourses" layoutX="217.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleAllCoursesAction" prefHeight="0.0" prefWidth="162.0" styleClass="blue-button" stylesheets="@styles.css" text="VIEW ALL COURSES" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Button>
+            <ImageView fx:id="course2" fitHeight="150.0" fitWidth="200.0" layoutX="230.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../assets/GUI%20assets/course2.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="addBtn1" defaultButton="true" layoutX="98.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleAddCourse1Action" prefHeight="22.0" prefWidth="72.0" styleClass="addCourse-button" stylesheets="@styles.css" text="+ ADD">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="addBtn2" defaultButton="true" layoutX="265.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleAddCourse2Action" prefHeight="22.0" prefWidth="72.0" styleClass="addCourse-button" stylesheets="@styles.css" text="+ ADD">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="addBtn3" defaultButton="true" layoutX="441.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleAddCourse3Action" prefHeight="22.0" prefWidth="72.0" styleClass="addCourse-button" stylesheets="@styles.css" text="+ ADD">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="backBtn" layoutX="14.0" layoutY="-6.0" mnemonicParsing="false" onAction="#handleBackToDashboardAction" prefHeight="61.0" prefWidth="82.0" styleClass="student-button" stylesheets="@styles.css">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fx:id="homeImg" fitHeight="60.0" fitWidth="60.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" styleClass="student-button">
+                     <image>
+                        <Image url="@../../../../../../assets/GUI%20assets/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Text fx:id="debug" layoutX="46.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Button fx:id="allCourses" layoutX="217.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleAllCoursesAction" prefHeight="0.0" prefWidth="162.0" styleClass="blue-button" stylesheets="@styles.css" text="VIEW ALL COURSES" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

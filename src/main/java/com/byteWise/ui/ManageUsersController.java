@@ -2,12 +2,10 @@ package src.main.java.com.byteWise.ui;
 
 import javafx.collections.FXCollections;
 import java.io.IOException;
-import java.text.Collator;
 
 import javafx.collections.ObservableList;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,11 +29,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import src.main.java.com.byteWise.courses.Course;
 import src.main.java.com.byteWise.filesystem.Read_Write;
 import src.main.java.com.byteWise.users.Admin.UserAlreadyExistsException;
 import src.main.java.com.byteWise.users.Admin.UserNotFoundException;
-import src.main.java.com.byteWise.users.User;
 
 public class ManageUsersController {
    @FXML
