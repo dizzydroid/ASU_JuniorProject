@@ -160,7 +160,7 @@ private void handleSaveQuiz() {
     this.dialog.setTitle("ByteWise Quiz Builder");
 
     // Set the image inside the dialog
-    ImageView imageView = new ImageView("file:///"+Read_Write.getFILEPATH()+"\\assets\\GUI Assets\\QBicon.png");
+    ImageView imageView = new ImageView("file:///"+Read_Write.getFILEPATH()+"\\assets\\GUI Assets\\QBhead.png");
     imageView.setFitWidth(500); // Set the width of the image
     imageView.setFitHeight(300); // Set the height of the image
     dialog.setGraphic(imageView);
