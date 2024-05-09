@@ -40,7 +40,7 @@ public class Adjustments {
     
     static public void adjustUserFontSize(Text userName){
         userName.textProperty().addListener((observable, oldValue, newValue) -> {
-        double newFontSize = Adjustments.calculateFontSize(userName,newValue.length(),254,89);
+        double newFontSize = Adjustments.calculateFontSize(userName,newValue.length(),392,89);
         userName.setFont(Font.font(userName.getFont().getName(), newFontSize));
         });
     }
