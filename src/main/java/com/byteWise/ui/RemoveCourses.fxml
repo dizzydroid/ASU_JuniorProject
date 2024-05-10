@@ -9,7 +9,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.com.byteWise.ui.RemoveCoursesController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
@@ -56,10 +55,17 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="sortbtn" layoutX="513.0" layoutY="214.0" mnemonicParsing="false" onAction="#handleSortAction" prefHeight="31.0" prefWidth="66.0" styleClass="admin-add-button" stylesheets="@styles.css" text="SORT" textFill="WHITE">
+            <Button fx:id="sortbtn" layoutX="385.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleSortAction" prefHeight="31.0" prefWidth="72.0" styleClass="student-button" stylesheets="@styles.css" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="47.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../assets/GUI%20assets/Sort.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
       </AnchorPane>

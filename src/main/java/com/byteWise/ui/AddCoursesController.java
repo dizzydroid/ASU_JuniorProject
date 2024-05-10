@@ -43,6 +43,7 @@ public class AddCoursesController {
         }
     }
     
+
     // hardcoded courses
     private Course course1 = new TextCourse("C1", "How To: Corn Flakes",
             "A deep dive into the art of cereal preparation.", "Food");
@@ -107,7 +108,7 @@ public class AddCoursesController {
                     instructorDashboardController.getInstructor().addCourse(selectedCourse);
                     Alert infoAlert = new Alert(Alert.AlertType.INFORMATION, "Course added successfully!");
                     infoAlert.showAndWait();
-                } catch (CourseNotFoundException ex) { // This exception should be defined to handle duplicates or other issues
+                } catch (CourseNotFoundException ex) { 
                     System.out.println("Attempted to add duplicate course: " + selectedCourse);
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Course already added or another error occurred: " + ex.getMessage());
                     errorAlert.showAndWait();

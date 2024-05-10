@@ -22,17 +22,17 @@
                   <Font name="Arial Bold" size="38.0" />
                </font>
             </Text>
-            <Button fx:id="myLearningBtn" layoutX="197.0" layoutY="145.0" mnemonicParsing="false" onAction="#handleMyLearningAction" prefHeight="66.0" prefWidth="206.0" styleClass="my-learning-button" stylesheets="@styles.css" text="MY LEARNING" textFill="WHITE">
+            <Button fx:id="myLearningBtn" layoutX="197.0" layoutY="172.0" mnemonicParsing="false" onAction="#handleMyLearningAction" prefHeight="66.0" prefWidth="206.0" styleClass="my-learning-button" stylesheets="@styles.css" text="MY LEARNING" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
             </Button>
-            <Button fx:id="discoverBtn" layoutX="104.0" layoutY="229.0" mnemonicParsing="false" onAction="#handleDiscoverAction" prefHeight="66.0" prefWidth="172.0" styleClass="discover-button" stylesheets="@styles.css" text="DISCOVER!" textFill="#4caf50">
+            <Button fx:id="discoverBtn" layoutX="104.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleDiscoverAction" prefHeight="66.0" prefWidth="172.0" styleClass="discover-button" stylesheets="@styles.css" text="DISCOVER!" textFill="#4caf50">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
             </Button>
-            <Button fx:id="giveUpBtn" layoutX="326.0" layoutY="228.0" mnemonicParsing="false" onAction="#handleGiveUpAction" prefHeight="66.0" prefWidth="172.0" styleClass="give-up-button" stylesheets="@styles.css" text="GIVE UP!" textFill="#ba3026">
+            <Button fx:id="giveUpBtn" layoutX="326.0" layoutY="255.0" mnemonicParsing="false" onAction="#handleGiveUpAction" prefHeight="66.0" prefWidth="172.0" styleClass="give-up-button" stylesheets="@styles.css" text="GIVE UP!" textFill="#ba3026">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
