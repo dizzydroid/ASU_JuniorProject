@@ -37,7 +37,7 @@ ByteWise is an innovative online course management system developed as a project
 <br><br>
 and finally, **Thanks to the team behind the magic**:
 - [dizzydroid](https://github.com/dizzydroid)
-- [Youssef9112](https://github.com/Youssef9112)
+- [unauthorised-401](https://github.com/unauthorised-401)
 - [DopeBiscuit](https://github.com/DopeBiscuit)
 - [seifelwarwary](https://github.com/seifelwarwary)
 - [SeifT101](https://github.com/SeifT101)
